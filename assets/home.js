@@ -13,7 +13,7 @@
     'I started as a pencil sketch.',
     'I can wear your company colors!',
     'Want one of me with your logo?',
-    'Soft and tested to toy safety standards.',
+    "Soft and squeezable — I'm just a prototype mascot.",
   ];
   let line = 0, bubbleTimer;
 

@@ -32,10 +32,16 @@
   }
   renderCart();
 
-  $$('[data-lang]').forEach(a => a.addEventListener('click', e => {
-    e.preventDefault();
-    toast('The local-market version is being designed. The language switch will link to it here.');
-  }));
+  /* Language links are real hrefs to the localized pages. Only block a leftover placeholder. */
+  $$('[data-lang]').forEach(a => {
+    const href = a.getAttribute('href') || '';
+    if (href === '#' || href === '') {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        toast('The local-market version is being designed. The language switch will link to it here.');
+      });
+    }
+  });
 
   const menuBtn = $('.menu-btn');
   const nav = $('#main-nav');
