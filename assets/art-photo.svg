@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300">
+  <title>A photo turned into a cartoon plush doll</title>
+  <g transform="rotate(-6 80 140)">
+    <rect x="14" y="56" width="132" height="156" rx="6" fill="#fff" stroke="#e2d8c8" stroke-width="2"/>
+    <rect x="26" y="68" width="108" height="108" rx="3" fill="#e9eef3"/>
+    <circle cx="80" cy="112" r="22" fill="#b9c3cc"/>
+    <path d="M42 176 Q48 140 80 138 Q112 140 118 176 Z" fill="#b9c3cc"/>
+  </g>
+  <path d="M160 150 H196 M186 138 L200 150 L186 162" fill="none" stroke="#e0a83a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(206 26) scale(.78)">
+    <ellipse cx="72" cy="232" rx="16" ry="30" transform="rotate(22 72 232)" fill="#2e7d4f"/>
+    <ellipse cx="188" cy="232" rx="16" ry="30" transform="rotate(-22 188 232)" fill="#2e7d4f"/>
+    <circle cx="62" cy="256" r="12" fill="#f6d5bd"/><circle cx="198" cy="256" r="12" fill="#f6d5bd"/>
+    <path d="M84 196 Q130 184 176 196 L194 284 Q130 300 66 284 Z" fill="#2e7d4f"/>
+    <ellipse cx="104" cy="296" rx="24" ry="14" fill="#3a2a22"/><ellipse cx="156" cy="296" rx="24" ry="14" fill="#3a2a22"/>
+    <circle cx="52" cy="132" r="13" fill="#f6d5bd"/><circle cx="208" cy="132" r="13" fill="#f6d5bd"/>
+    <circle cx="130" cy="124" r="80" fill="#f6d5bd"/>
+    <path d="M50 124 Q46 40 130 40 Q214 40 210 124 Q200 92 170 82 Q150 100 112 96 Q90 92 72 100 Q58 108 50 124 Z" fill="#6b4330"/>
+    <ellipse cx="102" cy="138" rx="11" ry="14" fill="#2b2220"/><circle cx="106" cy="133" r="4" fill="#fff"/>
+    <ellipse cx="158" cy="138" rx="11" ry="14" fill="#2b2220"/><circle cx="162" cy="133" r="4" fill="#fff"/>
+    <ellipse cx="84" cy="162" rx="11" ry="6" fill="#f2a0a8" opacity=".6"/><ellipse cx="176" cy="162" rx="11" ry="6" fill="#f2a0a8" opacity=".6"/>
+    <path d="M120 168 Q130 176 140 168" fill="none" stroke="#3a2a22" stroke-width="3" stroke-linecap="round"/>
+  </g>
+</svg>

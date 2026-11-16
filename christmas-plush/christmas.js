@@ -1,43 +1,11 @@
-/* Snugglecraft Christmas landing page prototype.
+/* Snugglecraft Christmas collection page.
    Everything here is progressive enhancement: the page content and SEO text are
    in the HTML, so search engines and no-JS visitors still get the full page. */
 (() => {
   'use strict';
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const store = {
-    get(k, d) { try { const v = localStorage.getItem('sc_' + k); return v ? JSON.parse(v) : d; } catch { return d; } },
-    set(k, v) { try { localStorage.setItem('sc_' + k, JSON.stringify(v)); } catch { /* private mode */ } },
-  };
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const { $, $$, store, toast, addToCart, reduceMotion } = window.SC;
   const now = () => new Date();
   const YEAR = now().getFullYear();
-
-  /* ---------- Toast + cart ---------- */
-  const toastEl = $('#toast');
-  let toastTimer;
-  function toast(msg) {
-    toastEl.textContent = msg;
-    toastEl.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3000);
-  }
-  let cart = store.get('cart', 0);
-  const cartCount = $('#cart-count');
-  const renderCart = () => { cartCount.textContent = cart; };
-  function addToCart(label) {
-    cart += 1;
-    store.set('cart', cart);
-    renderCart();
-    cartCount.classList.remove('bump'); void cartCount.offsetWidth; cartCount.classList.add('bump');
-    toast(`Added to cart: ${label}. (Prototype: there's no checkout yet.)`);
-  }
-  renderCart();
-
-  $$('[data-lang]').forEach(a => a.addEventListener('click', e => {
-    e.preventDefault();
-    toast(`The ${a.textContent} version comes in the full build. The hreflang tags are already in the page.`);
-  }));
 
   /* ---------- Ornaments ---------- */
   const ORN = {
@@ -506,33 +474,6 @@
   sel.addEventListener('change', () => { store.set('country', sel.value); buildShip(); });
   buildShip();
   setInterval(tickShip, 1000);
-
-  /* ---------- Quote form (prototype: not sent anywhere) ---------- */
-  const quote = $('#quote-form');
-  const out = $('#q-msg-out');
-  quote.addEventListener('submit', e => {
-    e.preventDefault();
-    out.classList.remove('err');
-    if (!quote.checkValidity()) {
-      out.classList.add('err');
-      out.textContent = 'Please fill in your company name and a valid work email.';
-      quote.querySelector(':invalid').focus();
-      return;
-    }
-    const company = quote.elements.company.value.trim();
-    out.textContent = `Thanks, ${company}! In the live site our team would reply within 1 business day with a free design proof. (Prototype: nothing was sent.)`;
-    quote.reset();
-  });
-
-  /* ---------- Process reveal ---------- */
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
-    }), { threshold: 0.2 });
-    $$('.reveal').forEach(el => io.observe(el));
-  } else {
-    $$('.reveal').forEach(el => el.classList.add('in'));
-  }
 
   /* ---------- Snow (hero only, pauses when off-screen) ---------- */
   const canvas = $('#snow');
