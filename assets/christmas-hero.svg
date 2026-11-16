@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 440">
+  <title>Plush Christmas tree and personalized reindeer plush</title>
+  <ellipse cx="280" cy="410" rx="250" ry="20" fill="#fff" opacity=".12"/>
+  <!-- Tree -->
+  <g transform="translate(0 24) scale(1.02)">
+    <rect x="128" y="296" width="44" height="52" rx="10" fill="#8b5a3c"/>
+    <path d="M150 138 L268 300 Q150 324 32 300 Z" fill="#2f7d4f" stroke="#235f3c" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M150 80 L236 222 Q150 242 64 222 Z" fill="#3a9160" stroke="#2a6f47" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M150 22 L206 144 Q150 160 94 144 Z" fill="#46a36d" stroke="#2f7d4f" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M150 152 L254 296 Q150 316 46 296 Z M150 94 L223 218 Q150 235 77 218 Z M150 38 L195 139 Q150 152 105 139 Z" fill="none" stroke="#dff1e5" stroke-width="1.6" stroke-dasharray="6 5" opacity=".55"/>
+    <circle cx="130" cy="190" r="6" fill="#1b2b22"/><circle cx="132" cy="188" r="2" fill="#fff"/>
+    <circle cx="170" cy="190" r="6" fill="#1b2b22"/><circle cx="172" cy="188" r="2" fill="#fff"/>
+    <path d="M140 203 Q150 212 160 203" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="117" cy="204" rx="8" ry="5" fill="#f2a0a8" opacity=".6"/><ellipse cx="183" cy="204" rx="8" ry="5" fill="#f2a0a8" opacity=".6"/>
+    <circle cx="150" cy="96" r="11" fill="#c8323a"/><circle cx="120" cy="130" r="9" fill="#e8b33c"/><circle cx="182" cy="128" r="9" fill="#c8323a"/>
+    <circle cx="96" cy="250" r="11" fill="#e8b33c"/><circle cx="206" cy="250" r="11" fill="#c8323a"/><circle cx="150" cy="268" r="10" fill="#fffaf2"/>
+    <circle cx="74" cy="288" r="9" fill="#c8323a"/><circle cx="228" cy="288" r="9" fill="#e8b33c"/><circle cx="110" cy="168" r="8" fill="#fffaf2"/><circle cx="194" cy="166" r="8" fill="#e8b33c"/>
+    <path d="M150 0 L156 13 L170 14 L159 23 L163 37 L150 29 L137 37 L141 23 L130 14 L144 13 Z" fill="#f2c14e" stroke="#c99520" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+  <!-- Reindeer -->
+  <g transform="translate(276 92) scale(.94)">
+    <g fill="none" stroke="#f0d7b0" stroke-width="9" stroke-linecap="round"><path d="M120 74 C110 52 102 38 94 20"/><path d="M106 46 C94 42 82 44 72 36"/><path d="M180 74 C190 52 198 38 206 20"/><path d="M194 46 C206 42 218 44 228 36"/></g>
+    <g fill="#8a5a3b" stroke="rgba(0,0,0,.12)" stroke-width="2">
+      <ellipse cx="78" cy="98" rx="27" ry="13" transform="rotate(-25 78 98)"/><ellipse cx="222" cy="98" rx="27" ry="13" transform="rotate(25 222 98)"/>
+      <ellipse cx="86" cy="252" rx="18" ry="34" transform="rotate(22 86 252)"/><ellipse cx="214" cy="252" rx="18" ry="34" transform="rotate(-22 214 252)"/>
+      <ellipse cx="150" cy="262" rx="72" ry="66"/><ellipse cx="112" cy="320" rx="28" ry="16"/><ellipse cx="188" cy="320" rx="28" ry="16"/>
+    </g>
+    <ellipse cx="150" cy="274" rx="42" ry="40" fill="#e6c7a0"/>
+    <ellipse cx="112" cy="325" rx="16" ry="8" fill="#5a3a26"/><ellipse cx="188" cy="325" rx="16" ry="8" fill="#5a3a26"/>
+    <path d="M174 190 L204 192 L200 254 L172 250 Z" fill="#c8323a"/>
+    <path d="M84 176 Q150 204 216 176 L220 199 Q150 229 80 199 Z" fill="#c8323a"/>
+    <path d="M86 182 Q150 210 214 182 M83 195 Q150 223 217 195" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 4" opacity=".5"/>
+    <text x="150" y="208" text-anchor="middle" font-family="ui-rounded, 'Nunito', 'Segoe UI', sans-serif" font-weight="800" font-size="17" letter-spacing="1" fill="#fff6e0">MIA</text>
+    <ellipse cx="150" cy="122" rx="72" ry="62" fill="#8a5a3b" stroke="rgba(0,0,0,.12)" stroke-width="2"/>
+    <ellipse cx="150" cy="153" rx="40" ry="27" fill="#e6c7a0"/>
+    <ellipse cx="150" cy="141" rx="14" ry="10" fill="#2b2220"/>
+    <path d="M140 160 Q150 168 160 160" fill="none" stroke="#3a2a22" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="122" cy="113" r="7" fill="#2b2220"/><circle cx="124.5" cy="110.5" r="2.4" fill="#fff"/>
+    <circle cx="178" cy="113" r="7" fill="#2b2220"/><circle cx="180.5" cy="110.5" r="2.4" fill="#fff"/>
+    <ellipse cx="104" cy="139" rx="10" ry="6" fill="#f2a0a8" opacity=".55"/><ellipse cx="196" cy="139" rx="10" ry="6" fill="#f2a0a8" opacity=".55"/>
+    <path d="M118 72 C122 40 150 24 186 28 C196 30 202 38 200 46 C192 44 184 50 182 72 Z" fill="#c8323a" stroke="#a3262d" stroke-width="2"/>
+    <rect x="110" y="60" width="80" height="17" rx="8.5" fill="#fffaf2"/>
+    <circle cx="201" cy="46" r="9" fill="#fffaf2"/>
+  </g>
+  <!-- Gifts -->
+  <g transform="translate(232 352)">
+    <rect x="0" y="10" width="54" height="44" rx="6" fill="#c8323a"/><rect x="23" y="10" width="8" height="44" fill="#f2c14e"/>
+    <ellipse cx="18" cy="6" rx="10" ry="6" fill="none" stroke="#f2c14e" stroke-width="4"/><ellipse cx="36" cy="6" rx="10" ry="6" fill="none" stroke="#f2c14e" stroke-width="4"/>
+  </g>
+</svg>

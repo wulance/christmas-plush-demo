@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://wulance.github.io/christmas-plush-demo/sitemap.xml
