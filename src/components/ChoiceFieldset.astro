@@ -1,0 +1,29 @@
+---
+/* A radio-button group rendered as color swatches or pills, as used by the builders. */
+interface Option {
+  value: string;
+  label: string;
+  /** Swatch color; defaults to `value`. */
+  color?: string;
+  checked?: boolean;
+}
+interface Props {
+  legend: string;
+  name: string;
+  kind: 'swatch' | 'pill';
+  options: Option[];
+  /** Adds a final "custom color" swatch with a color picker. */
+  custom?: { label: string; name: string; value: string; ariaLabel: string };
+}
+const { legend, name, kind, options, custom } = Astro.props;
+---
+<fieldset><legend>{legend}</legend>
+  {options.map(o => kind === 'swatch'
+    ? <label class="swatch"><input type="radio" name={name} value={o.value} checked={o.checked} /><span style={`--c:${o.color ?? o.value}`}></span>{o.label}</label>
+    : <label class="pill"><input type="radio" name={name} value={o.value} checked={o.checked} /><span>{o.label}</span></label>
+  )}
+  {custom && (
+    <label class="swatch"><input type="radio" name={name} value="custom" /><span class="rainbow"></span>{custom.label}
+      <input type="color" name={custom.name} value={custom.value} aria-label={custom.ariaLabel} /></label>
+  )}
+</fieldset>

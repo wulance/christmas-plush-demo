@@ -1,0 +1,14 @@
+---
+/* Four-step "How we work" timeline. Each step's illustration is trusted inline SVG markup. */
+interface Props { steps: { title: string; text: string; svg: string }[] }
+const { steps } = Astro.props;
+---
+<ol class="timeline">
+  {steps.map(s => (
+    <li class="reveal">
+      <Fragment set:html={s.svg} />
+      <h3>{s.title}</h3>
+      <p set:html={s.text} />
+    </li>
+  ))}
+</ol>

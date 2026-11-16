@@ -1,0 +1,15 @@
+---
+/* FAQ section. Answers are trusted, hand-written HTML (some contain links). */
+interface Props {
+  heading: string;
+  items: { q: string; a: string }[];
+  alt?: boolean;
+}
+const { heading, items, alt = false } = Astro.props;
+---
+<section class:list={['section', { alt }]} id="faq" aria-labelledby="faq-h">
+  <div class="wrap prose">
+    <h2 id="faq-h">{heading}</h2>
+    {items.map(({ q, a }) => <details><summary>{q}</summary><p set:html={a} /></details>)}
+  </div>
+</section>

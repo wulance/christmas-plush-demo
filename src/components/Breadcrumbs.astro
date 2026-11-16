@@ -1,0 +1,9 @@
+---
+import { link, type RouteKey, type Locale } from '../data/site';
+import { translator } from '../i18n/translate';
+
+interface Props { route: RouteKey; locale: Locale; label: string }
+const { route, locale, label } = Astro.props;
+const t = translator(locale);
+---
+<nav class="crumbs" aria-label={t('Breadcrumb')}><a href={link('home', route, locale)}>{t('Home')}</a> › <a href={link('home', route, locale, 'collections')}>{t('Collections')}</a> › <span>{label}</span></nav>

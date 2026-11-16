@@ -1,0 +1,72 @@
+---
+/* Shared page shell: <head> metadata, demo notice bar, header, footer, toast.
+   Every page passes its own SEO copy, notice text and JSON-LD graph. */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ROUTES, absPageUrl, absUrl, url, type RouteKey } from '../data/site';
+import { LOCALE_META, htmlLang, translator, type Locale } from '../i18n/translate';
+
+interface Props {
+  locale: Locale;
+  route: RouteKey;
+  title: string;
+  description: string;
+  ogTitle: string;
+  ogDescription: string;
+  /** Path below the base, e.g. "assets/og-home.png" (placeholder images, as in the original). */
+  ogImage: string;
+  /** Text of the "Prototype: ..." notice bar at the top of the page. */
+  notice: string;
+  /** Footer placeholder note: "names, prices and <figures|dates>". */
+  footerNote?: string;
+  /** JSON-LD @graph entries. */
+  jsonLd: Record<string, unknown>[];
+}
+
+const { locale, route, title, description, ogTitle, ogDescription, ogImage, notice, footerNote, jsonLd } = Astro.props;
+const t = translator(locale);
+const pageUrl = absPageUrl(route, locale);
+const enUrl = absPageUrl(route, 'en');
+const zhUrl = absPageUrl(route, 'zh');
+const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonLd }, null, 2);
+---
+<!doctype html>
+<html lang={htmlLang(locale)}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<link rel="canonical" href={pageUrl}>
+<link rel="alternate" hreflang="en" href={enUrl}>
+<link rel="alternate" hreflang="zh-Hans" href={zhUrl}>
+<link rel="alternate" hreflang="x-default" href={enUrl}>
+<meta property="og:type" content="website">
+<meta property="og:title" content={ogTitle}>
+<meta property="og:description" content={ogDescription}>
+<meta property="og:url" content={pageUrl}>
+<meta property="og:image" content={absUrl(ogImage)}>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4d36">
+<link rel="icon" href={url('assets/favicon.svg')} type="image/svg+xml">
+<script type="application/ld+json" is:inline set:html={ld}></script>
+</head>
+<body>
+<a class="skip" href="#main">{t('Skip to content')}</a>
+<div class="proto-bar" role="note">{notice}</div>
+
+<Header route={route} locale={locale}><slot name="header-tools" /></Header>
+
+<main id="main">
+  <slot />
+</main>
+
+<Footer route={route} locale={locale} note={footerNote} />
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+  import '../scripts/site.js';
+</script>
+</body>
+</html>
