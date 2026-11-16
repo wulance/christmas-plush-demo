@@ -1,0 +1,223 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ChoiceFieldset from '../components/ChoiceFieldset.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import Faq from '../components/Faq.astro';
+import { ORG_ID, ROUTES, SITE_NAME, absUrl, absPageUrl, breadcrumbLd, link, url } from '../data/site';
+import type { RouteKey } from '../data/site';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = translator(locale);
+
+const route: RouteKey = 'corporate';
+
+const jsonLd = [
+  {
+    '@type': 'Service',
+    name: t("Custom corporate plush mascots"),
+    serviceType: t("Custom plush toy design and manufacturing"),
+    description: t("Plush mascots designed from a company's logo, brand colors and culture, with a free digital proof and Pantone color matching. Minimum order 50 pieces."),
+    provider: { '@type': 'Organization', '@id': ORG_ID, name: SITE_NAME, url: absUrl() },
+    areaServed: 'Worldwide',
+    url: absPageUrl('corporate', locale),
+  },
+  breadcrumbLd(t('Corporate custom plush'), route, locale, t('Home'), t('Collections')),
+];
+
+const FAQ = [
+  {
+    q: t("Can you design a mascot if we only have a logo?"),
+    a: t("Yes. Most of our mascots start from just a logo and a short description of the company. We'll ask a few questions about your culture and audience, and then propose 2–3 character directions."),
+  },
+  {
+    q: t("Who owns the mascot design?"),
+    a: t("You do. When the order is complete, we transfer the character design rights to your company. (Placeholder: confirm this with your legal terms.)"),
+  },
+  {
+    q: t("Can you match our exact brand colors?"),
+    a: t("Yes. We dye or select fabric to match your Pantone references, and we send fabric swatches for approval on orders of 500 pieces or more."),
+  },
+];
+---
+<BaseLayout
+  locale={locale}
+  route={route}
+  title={t("Custom Corporate Plush Mascots from Your Logo | Snugglecraft")}
+  description={t("Custom plush mascots designed from your company logo, brand colors and culture. Free digital design proof, Pantone color matching, orders from 50 pieces, shipping worldwide.")}
+  ogTitle={t("Custom plush mascots for companies")}
+  ogDescription={t("Turn your logo and company culture into a plush mascot. Free design proof, from 50 pieces.")}
+  ogImage="assets/art-corporate.png"
+  notice={t("Prototype: brand name, prices and lead times are placeholders. Nothing is charged or sent.")}
+  jsonLd={jsonLd}
+>
+  <section class="hero hero-plain">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <Breadcrumbs route={route} locale={locale} label={t("Corporate")} />
+        <p class="eyebrow">{t("For companies")}</p>
+        <h1>{t("Custom plush mascots designed from your logo and culture")}</h1>
+        <p class="lead">{t("We turn your logo, brand colors and the personality of your team into a plush mascot that people want to keep. Use it for employee welcome kits, client gifts, trade shows or your merch store.")}</p>
+        <div class="cta-row">
+          <a class="btn btn-red squish" href="#builder">{t("Try the mascot builder")}</a>
+          <a class="btn btn-ghost squish" href="#quote">{t("Request a quote")}</a>
+        </div>
+      </div>
+      <div class="hero-art squish">
+        <img src={url('assets/art-corporate.svg')} width="320" height="300" alt={t("Blue company mascot plush with a logo patch on its belly")}>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="uses" aria-labelledby="uses-h">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">{t("Where mascots work")}</p><h2 id="uses-h">{t("A plush people keep on their desk")}</h2></div>
+      <ul class="use-cases">
+        <li class="reveal"><strong>{t("Employee welcome kits")}</strong><span>{t("Give new hires a friendly face of your company culture on day one.")}</span></li>
+        <li class="reveal"><strong>{t("Client &amp; holiday gifts")}</strong><span>{locale === 'zh' ? <>在其他礼品被忘掉之后，它往往还会留在桌上。也可以看看<a href={link('christmas', route, locale)}>圣诞系列</a>。</> : <>Stays on desks long after other gifts are forgotten. See the <a href={link('christmas', route, locale)}>Christmas collection</a> too.</>}</span></li>
+        <li class="reveal"><strong>{t("Trade shows &amp; events")}</strong><span>{t("Brings people to your booth and gets shared on social media.")}</span></li>
+        <li class="reveal"><strong>{t("Brand mascots &amp; merch")}</strong><span>{t("Turn your app or brand character into a product you can sell.")}</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt" id="builder" aria-labelledby="builder-h">
+    <div class="wrap two-col reverse">
+      <div>
+        <div class="preview-card squish">
+          <svg id="mascot" viewBox="0 0 320 300" role="img" aria-labelledby="mascot-t">
+            <title id="mascot-t">{t("Preview of your company mascot concept")}</title>
+            <g id="ears-bear">
+              <circle class="m-body" cx="88" cy="78" r="34"/><circle class="m-body" cx="232" cy="78" r="34"/>
+              <circle class="m-inner" cx="90" cy="80" r="17"/><circle class="m-inner" cx="230" cy="80" r="17"/>
+            </g>
+            <g id="ears-cat">
+              <path class="m-body" d="M66 112 L78 26 L140 72 Z" stroke-linejoin="round"/><path class="m-body" d="M254 112 L242 26 L180 72 Z" stroke-linejoin="round"/>
+              <path class="m-inner" d="M82 92 L88 48 L120 74 Z"/><path class="m-inner" d="M238 92 L232 48 L200 74 Z"/>
+            </g>
+            <g id="ears-bunny">
+              <ellipse class="m-body" cx="118" cy="56" rx="20" ry="50" transform="rotate(-12 118 56)"/><ellipse class="m-body" cx="202" cy="56" rx="20" ry="50" transform="rotate(12 202 56)"/>
+              <ellipse class="m-inner" cx="118" cy="56" rx="9" ry="36" transform="rotate(-12 118 56)"/><ellipse class="m-inner" cx="202" cy="56" rx="9" ry="36" transform="rotate(12 202 56)"/>
+            </g>
+            <ellipse class="m-body" cx="62" cy="200" rx="22" ry="36" transform="rotate(25 62 200)"/>
+            <ellipse class="m-body" cx="258" cy="200" rx="22" ry="36" transform="rotate(-25 258 200)"/>
+            <ellipse class="m-body" cx="118" cy="270" rx="34" ry="20"/><ellipse class="m-body" cx="202" cy="270" rx="34" ry="20"/>
+            <ellipse class="m-body" cx="160" cy="165" rx="112" ry="104"/>
+            <ellipse id="m-patch" cx="160" cy="224" rx="62" ry="38" fill="#fff"/>
+            <ellipse cx="160" cy="224" rx="56" ry="32" fill="none" stroke="rgba(0,0,0,.15)" stroke-width="2" stroke-dasharray="5 4"/>
+            <text id="m-brand" x="160" y="224" text-anchor="middle" dominant-baseline="central" font-family="ui-rounded, 'Nunito', 'Segoe UI', sans-serif" font-weight="900" letter-spacing="1">ACME</text>
+            <g id="face-happy">
+              <circle cx="124" cy="138" r="11" fill="#1b2b22"/><circle cx="128" cy="134" r="4" fill="#fff"/>
+              <circle cx="196" cy="138" r="11" fill="#1b2b22"/><circle cx="200" cy="134" r="4" fill="#fff"/>
+              <path d="M150 170 Q160 178 170 170" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <g id="face-wink">
+              <path d="M112 140 Q124 130 136 140" fill="none" stroke="#1b2b22" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="196" cy="138" r="11" fill="#1b2b22"/><circle cx="200" cy="134" r="4" fill="#fff"/>
+              <path d="M146 168 Q160 184 174 168" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <g id="face-cool">
+              <path d="M98 128 H150 Q152 152 128 154 Q100 154 98 128 Z M170 128 H222 Q220 154 192 154 Q168 152 170 128 Z" fill="#1b2b22"/>
+              <path d="M150 132 H170" stroke="#1b2b22" stroke-width="4"/>
+              <path d="M108 134 L118 134" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+              <path d="M150 174 Q162 178 172 168" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+            </g>
+            <ellipse cx="160" cy="160" rx="9" ry="6" fill="#1b2b22"/>
+            <ellipse cx="104" cy="168" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/><ellipse cx="216" cy="168" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/>
+          </svg>
+        </div>
+        <p class="deer-summary" id="mascot-summary" aria-live="polite"></p>
+      </div>
+      <div>
+        <p class="eyebrow">{t("Mascot builder")}</p>
+        <h2 id="builder-h">{t("Sketch a mascot concept in 30 seconds")}</h2>
+        <p>{t("Choose a character, your brand colors and a personality. This is only a starting point: our designers turn it into an original character based on your real logo and brief.")}</p>
+        <form id="mascot-form" class="builder" autocomplete="off">
+          <div class="field">
+            <label for="m-name">{t("Company or brand name")}</label>
+            <input id="m-name" name="brand" type="text" maxlength="14" value="ACME">
+          </div>
+          <ChoiceFieldset legend={t("Character")} name="ears" kind="pill" options={[
+            { value: 'bear', label: t("Bear"), checked: true },
+            { value: 'cat', label: t("Cat") },
+            { value: 'bunny', label: t("Bunny") },
+          ]} />
+          <ChoiceFieldset legend={t("Main brand color")} name="body" kind="swatch" options={[
+            { value: '#3b7dd8', label: t("Ocean"), checked: true },
+            { value: '#9fd8c4', label: t("Mint") },
+            { value: '#f2994a', label: t("Sunset") },
+            { value: '#c8323a', label: t("Berry") },
+            { value: '#5b5f6b', label: t("Graphite") },
+          ]}
+            custom={{ label: t("Your color"), name: 'bodyCustom', value: '#7b3fa0', ariaLabel: t("Custom main brand color") }} />
+          <ChoiceFieldset legend={t("Logo patch color")} name="patch" kind="swatch" options={[
+            { value: '#ffffff', label: t("White"), checked: true },
+            { value: '#fff4e6', label: t("Cream") },
+            { value: '#f2c14e', label: t("Gold") },
+            { value: '#1b2b22', label: t("Black") },
+          ]} />
+          <ChoiceFieldset legend={t("Personality")} name="face" kind="pill" options={[
+            { value: 'happy', label: t("Friendly"), checked: true },
+            { value: 'wink', label: t("Playful") },
+            { value: 'cool', label: t("Confident") },
+          ]} />
+          <div class="price-row">
+            <button class="btn btn-red squish" id="mascot-cta" type="button">{t("Request a quote for this concept")}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap prose">
+      <h2 id="pricing-h">{t("Pricing and lead times")}</h2>
+      <p>{t("The price depends on size, the amount of embroidery and the packaging. These are typical prices for a 25 cm mascot (placeholders):")}</p>
+      <table class="tiers">
+        <thead><tr><th scope="col">{t("Quantity")}</th><th scope="col">{t("Typical price per piece")}</th><th scope="col">{t("Production time")}</th></tr></thead>
+        <tbody>
+          <tr><td>50–199</td><td>{t("from $14.90")}</td><td>{t("20–25 days")}</td></tr>
+          <tr><td>200–499</td><td>{t("from $11.50")}</td><td>{t("20–25 days")}</td></tr>
+          <tr><td>500–1,999</td><td>{t("from $8.90")}</td><td>{t("25–30 days")}</td></tr>
+          <tr><td>2,000+</td><td>{t("Ask us for a quote")}</td><td>{t("30–40 days")}</td></tr>
+        </tbody>
+      </table>
+      <p class="small">{t("The digital design proof is free. A physical sample costs $120, which we refund when you place the order. Production starts after you approve the sample.")}</p>
+    </div>
+  </section>
+
+  <section class="section alt" id="quote" aria-labelledby="quote-h">
+    <div class="wrap two-col">
+      <div>
+        <p class="eyebrow">{t("Get started")}</p>
+        <h2 id="quote-h">{t("Request a quote and free design proof")}</h2>
+        <ul class="ticks">
+          <li>{t("We send a free digital design proof within 3 business days")}</li>
+          <li>{t("We match fabric and thread to your Pantone colors")}</li>
+          <li>{t("Woven labels, hang tags and branded gift boxes are available")}</li>
+          <li>{t("We can deliver to several offices in different countries")}</li>
+        </ul>
+        <p class="small">{locale === 'zh' ? <>如果赶圣诞使用：完全定制吉祥物建议预留 6–8 周（演示周期，非承诺交期），或选择更快的<a href={link('christmas', route, locale, 'reindeer')}>品牌色麋鹿</a>。</> : <>Need it for Christmas? Plan 6–8 weeks for a fully custom mascot, or choose the faster <a href={link('christmas', route, locale, 'reindeer')}>branded reindeer</a>.</>}</p>
+      </div>
+      <QuoteForm
+        locale={locale}
+        heading={t("Your project")}
+        products={[
+          { value: 'mascot', label: t("Custom mascot") },
+          { value: 'reindeer', label: t("Branded Christmas reindeer") },
+          { value: 'tree', label: t("Christmas tree calendar") },
+          { value: 'other', label: t("Something else") },
+        ]}
+        logoField
+        placeholder={t("Your deadline, delivery countries, and what your company culture is like")}
+      />
+    </div>
+  </section>
+
+  <Faq heading={t("Corporate plush FAQ")} items={FAQ} />
+  <script>
+    import '../scripts/corporate.js';
+  </script>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+import { FOOTER_COLLECTIONS, FOOTER_STUDIO, link, type RouteKey } from '../data/site';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props { route: RouteKey; locale: Locale; note?: string }
+const { route, locale, note } = Astro.props;
+const t = translator(locale);
+const footerNote = note ?? t('All names, prices and figures are placeholders.');
+const companyAria = locale === 'zh' ? '工作室' : 'Company';
+---
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div><strong>Snugglecraft</strong><p class="small">{t('Original plush toys designed in-house: company mascots, seasonal collections and photo-to-plush characters.')}</p></div>
+    <nav aria-label={t('Collections')}><strong>{t('Collections')}</strong>{FOOTER_COLLECTIONS.map(i => <a href={link(i.to, route, locale)}>{t(i.label)}</a>)}</nav>
+    <nav aria-label={companyAria}><strong>{t('Studio')}</strong>{FOOTER_STUDIO.map(i => <a href={link(i.to, route, locale, i.hash)}>{t(i.label)}</a>)}</nav>
+    <p class="small">{t('Prototype')} · {footerNote}</p>
+  </div>
+</footer>

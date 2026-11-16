@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ChoiceFieldset from '../components/ChoiceFieldset.astro';
+import Faq from '../components/Faq.astro';
+import { ORG_ID, ROUTES, SITE_NAME, absUrl, absPageUrl, breadcrumbLd, link, url } from '../data/site';
+import type { RouteKey } from '../data/site';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = translator(locale);
+
+const route: RouteKey = 'photo';
+
+const jsonLd = [
+  {
+    '@type': 'Product',
+    name: t("Custom cartoon plush doll from a photo"),
+    description: t("A plush doll of a person or pet. Our illustrators draw it from your photo, you approve the design, and we sew it."),
+    image: absUrl('assets/art-photo.png'),
+    brand: { '@type': 'Organization', '@id': ORG_ID, name: SITE_NAME },
+    sku: 'PH-DOLL',
+    offers: { '@type': 'AggregateOffer', lowPrice: '89.00', highPrice: '129.00', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+  },
+  breadcrumbLd(t('Photo to plush'), route, locale, t('Home'), t('Collections')),
+];
+
+const FAQ = [
+  {
+    q: t("What happens to my photo?"),
+    a: t("We use your photo only to design your plush, and delete it 90 days after delivery. We never use customer photos in marketing without permission. (Placeholder: match this to your privacy policy.)"),
+  },
+  {
+    q: t("Can I make changes to the drawing?"),
+    a: t("Yes. Two rounds of changes are included before we start sewing."),
+  },
+  {
+    q: t("How long does it take?"),
+    a: t("The drawing takes about 3 days. The plush ships about 3 weeks after you approve it."),
+  },
+];
+---
+<BaseLayout
+  locale={locale}
+  route={route}
+  title={t("Custom Plush Doll from Your Photo | Cartoon Plush of People & Pets | Snugglecraft")}
+  description={t("Turn a photo of a person or pet into a custom cartoon plush doll. Our illustrators draw your character by hand, you approve the design, and we sew it in about 3 weeks.")}
+  ogTitle={t("Turn a photo into a cartoon plush")}
+  ogDescription={t("Custom plush dolls of people and pets, drawn by our illustrators from your photo.")}
+  ogImage="assets/art-photo.png"
+  notice={t("Prototype: brand name, prices and lead times are placeholders. Your photo stays in your browser. Nothing is uploaded or sent.")}
+  jsonLd={jsonLd}
+>
+  <section class="hero hero-plain">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <Breadcrumbs route={route} locale={locale} label={t("Photo to plush")} />
+        <p class="eyebrow">{t("Personal gifts · from $89")}</p>
+        <h1>{t("Turn a photo into a cartoon plush")}</h1>
+        <p class="lead">{t("Send us a photo of a person or pet. Our illustrators draw a cartoon version by hand, you approve the design, and we sew a one-of-a-kind plush. It makes a great gift for birthdays, weddings, new babies and memorials.")}</p>
+        <div class="cta-row">
+          <a class="btn btn-red squish" href="#design">{t("Try the style preview")}</a>
+          <a class="btn btn-ghost squish" href="#how">{t("How it works")}</a>
+        </div>
+      </div>
+      <div class="hero-art squish">
+        <img src={url('assets/art-photo.svg')} width="380" height="300" alt={t("A photo of a person next to the cartoon plush doll made from it")}>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">{t("How it works")}</p><h2 id="how-h">{t("Three steps from photo to plush")}</h2></div>
+      <ul class="use-cases" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+        <li class="reveal"><strong>{t("1. Send a photo")}</strong><span>{t("A clear, well-lit photo where we can see the face works best. Add a full-body photo if you can.")}</span></li>
+        <li class="reveal"><strong>{t("2. Approve the drawing")}</strong><span>{t("Within 3 days an illustrator sends you a cartoon design, with up to 2 rounds of changes.")}</span></li>
+        <li class="reveal"><strong>{t("3. We sew and ship")}</strong><span>{t("We sew, embroider and gift-wrap your plush. It ships about 3 weeks after you approve the drawing.")}</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section alt" id="design" aria-labelledby="design-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">{t("Style preview")}</p>
+        <h2 id="design-h">{t("Add your photo and choose the style")}</h2>
+        <p>{t("This preview shows the style options. Your real plush is drawn by hand from your photo, so it will look like the person or pet in it.")}</p>
+      </div>
+      <form id="photo-form" class="two-col builder" novalidate data-proto-form data-error-text={t("Please add a photo, your name and a valid email.")} autocomplete="off">
+        <div>
+          <div class="photo-flow">
+            <figure class="polaroid">
+              <div class="ph" id="photo-box">{t("Your photo<br>goes here")}</div>
+              <figcaption id="photo-cap">{t("Original")}</figcaption>
+            </figure>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="preview-card" style="padding:12px">
+              <svg id="chibi" viewBox="0 0 260 320" role="img" aria-labelledby="chibi-t">
+                <title id="chibi-t">{t("Preview of the cartoon plush style")}</title>
+                <path id="c-long" class="c-hair" d="M54 112 Q46 214 84 222 L176 222 Q214 214 206 112 Z"/>
+                <ellipse class="c-outfit" cx="72" cy="232" rx="16" ry="30" transform="rotate(22 72 232)"/>
+                <ellipse class="c-outfit" cx="188" cy="232" rx="16" ry="30" transform="rotate(-22 188 232)"/>
+                <circle class="c-skin" cx="62" cy="256" r="12"/><circle class="c-skin" cx="198" cy="256" r="12"/>
+                <path class="c-outfit" d="M84 196 Q130 184 176 196 L194 284 Q130 300 66 284 Z"/>
+                <path d="M100 200 Q130 214 160 200" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="4 4" opacity=".6"/>
+                <ellipse cx="104" cy="296" rx="24" ry="14" fill="#3a2a22"/><ellipse cx="156" cy="296" rx="24" ry="14" fill="#3a2a22"/>
+                <circle class="c-skin" cx="52" cy="132" r="13"/><circle class="c-skin" cx="208" cy="132" r="13"/>
+                <circle id="c-bun" class="c-hair" cx="130" cy="44" r="26"/>
+                <circle class="c-skin" cx="130" cy="124" r="80" stroke="rgba(0,0,0,.08)" stroke-width="2"/>
+                <path class="c-hair" d="M50 124 Q46 40 130 40 Q214 40 210 124 Q200 92 170 82 Q150 100 112 96 Q90 92 72 100 Q58 108 50 124 Z"/>
+                <ellipse cx="102" cy="138" rx="11" ry="14" fill="#2b2220"/><circle cx="106" cy="133" r="4" fill="#fff"/>
+                <ellipse cx="158" cy="138" rx="11" ry="14" fill="#2b2220"/><circle cx="162" cy="133" r="4" fill="#fff"/>
+                <ellipse cx="84" cy="162" rx="11" ry="6" fill="#f2a0a8" opacity=".6"/><ellipse cx="176" cy="162" rx="11" ry="6" fill="#f2a0a8" opacity=".6"/>
+                <path d="M120 168 Q130 176 140 168" fill="none" stroke="#3a2a22" stroke-width="3" stroke-linecap="round"/>
+                <g id="c-glasses" fill="none" stroke="#2b2220" stroke-width="3.5"><circle cx="102" cy="138" r="21"/><circle cx="158" cy="138" r="21"/><path d="M123 136 Q130 131 137 136"/></g>
+                <g id="c-santa">
+                  <path d="M52 96 C64 46 110 22 160 28 C196 32 222 44 238 66 C226 66 214 74 210 92 Z" fill="#c8323a"/>
+                  <rect x="44" y="82" width="172" height="24" rx="12" fill="#fffaf2" stroke="#e7ddd0" stroke-width="2"/>
+                  <circle cx="240" cy="68" r="13" fill="#fffaf2" stroke="#e7ddd0" stroke-width="2"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <p class="deer-summary" id="chibi-summary" aria-live="polite" style="margin-inline:auto"></p>
+        </div>
+        <div>
+          <div class="field">
+            <span class="field-label"><strong style="color:var(--green);font-size:.9rem">{t("Photo")}</strong></span>
+            <label class="btn btn-line upload">{t("📷 Choose a photo")}<input type="file" id="photo-in" name="photo" accept="image/*" required></label>
+            <p class="privacy">{t("🔒 In this prototype your photo never leaves your browser.")}</p>
+          </div>
+          <ChoiceFieldset legend={t("Hair style")} name="hair" kind="pill" options={[
+            { value: t("short"), label: t("Short"), checked: true },
+            { value: t("long"), label: t("Long") },
+            { value: t("bun"), label: t("Bun") },
+          ]} />
+          <ChoiceFieldset legend={t("Hair color")} name="hairColor" kind="swatch" options={[
+            { value: '#2b2220', label: t("Black") },
+            { value: '#6b4330', label: t("Brown"), checked: true },
+            { value: '#e8c26a', label: t("Blonde") },
+            { value: '#b5532f', label: t("Auburn") },
+            { value: '#b9b6b0', label: t("Grey") },
+          ]} />
+          <ChoiceFieldset legend={t("Skin tone")} name="skin" kind="swatch" options={[
+            { value: '#f6d5bd', label: t("Light"), checked: true },
+            { value: '#e8b896', label: t("Medium") },
+            { value: '#c68c63', label: t("Tan") },
+            { value: '#8d5a3b', label: t("Deep") },
+          ]} />
+          <ChoiceFieldset legend={t("Outfit color")} name="outfit" kind="swatch" options={[
+            { value: '#2e7d4f', label: t("Green"), checked: true },
+            { value: '#3b7dd8', label: t("Blue") },
+            { value: '#c8323a', label: t("Red") },
+            { value: '#f2c14e', label: t("Yellow") },
+          ]} />
+          <ChoiceFieldset legend={t("Extras")} name="extra" kind="pill" options={[
+            { value: 'none', label: t("None"), checked: true },
+            { value: t("glasses"), label: t("Glasses") },
+            { value: 'santa', label: t("Santa hat 🎄") },
+          ]} />
+          <ChoiceFieldset legend={t("Size")} name="size" kind="pill" options={[
+            { value: '25', label: '25 cm · $89', checked: true },
+            { value: '35', label: '35 cm · $129' },
+          ]} />
+          <div class="grid2">
+            <div class="field"><label for="p-name">{t("Your name")}</label><input id="p-name" name="name" required autocomplete="name"></div>
+            <div class="field"><label for="p-email">{t("Email")}</label><input id="p-email" name="email" type="email" required autocomplete="email"></div>
+          </div>
+          <div class="field"><label for="p-notes">{t("Anything we should know?")}</label><textarea id="p-notes" name="notes" rows="3" placeholder={t("For example: always wears a red scarf, has a dimple on the left, or it's for a dog called Biscuit")}></textarea></div>
+          <div class="price-row">
+            <span class="price" id="photo-price">$89</span>
+            <button class="btn btn-red squish" type="submit">{t("Send to our illustrators")}</button>
+          </div>
+          <p class="small">{t("You pay only after you approve the drawing.")}</p>
+          <p class="form-msg" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="tips" aria-labelledby="tips-h">
+    <div class="wrap prose">
+      <h2 id="tips-h">{t("Custom plush dolls from photos: tips and ideas")}</h2>
+      <p>{t("The best photos are well lit, taken from the front, and show the face clearly. If the person has a signature item, like round glasses, a favorite hoodie or a team jersey, send a photo of that too, because small details make the plush recognizable.")}</p>
+      <h3>{t("Plush portraits of pets")}</h3>
+      <p>{t("Pets work just as well as people. Send photos of the face and of any special markings, such as a white sock or a spot over one eye, and our illustrators will include them.")}</p>
+      <h3>{t("Gift ideas")}</h3>
+      <p>{locale === 'zh' ? <>照片玩偶常用作婚礼礼物（做成一对）、长辈生日、新生儿礼，或宠物纪念。过节时可以选择圣诞帽，或查看<a href={link('christmas', route, locale)}>圣诞系列</a>。（以上为演示说明，不是真实顾客评价。）</> : <>Customers order photo plush as wedding gifts (a pair of the couple), for a grandparent's birthday, for a new baby, or as a keepsake of a pet that has died. For the holidays, choose the Santa hat, or see the <a href={link('christmas', route, locale)}>Christmas collection</a>.</>}</p>
+    </div>
+  </section>
+
+  <Faq heading={t("Photo to plush FAQ")} items={FAQ} alt />
+  <script>
+    import '../scripts/photo.js';
+  </script>
+</BaseLayout>

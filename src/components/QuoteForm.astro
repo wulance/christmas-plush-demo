@@ -1,0 +1,33 @@
+---
+/* Mock-only quote form. The shared prototype handler in site.js validates it,
+   shows a thank-you message and sends nothing. */
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props {
+  locale: Locale;
+  heading: string;
+  products: { value: string; label: string }[];
+  /** Show the optional logo / brand guide file field. */
+  logoField?: boolean;
+  placeholder: string;
+}
+const { locale, heading, products, logoField = false, placeholder } = Astro.props;
+const t = translator(locale);
+const QTY = ['50–199', '200–499', '500–1,999', '2,000+'];
+const companyLabel = locale === 'zh' ? '公司' : 'Company';
+---
+<form class="quote card" id="quote-form" novalidate data-proto-form data-error-text={t('Please fill in your company name and a valid work email.')}>
+  <h3>{heading}</h3>
+  <div class="field"><label for="q-company">{companyLabel}</label><input id="q-company" name="company" required autocomplete="organization"></div>
+  <div class="field"><label for="q-email">{t('Work email')}</label><input id="q-email" name="email" type="email" required autocomplete="email"></div>
+  <div class="grid2">
+    <div class="field"><label for="q-product">{t('Product')}</label>
+      <select id="q-product" name="product">{products.map(p => <option value={p.value}>{p.label}</option>)}</select></div>
+    <div class="field"><label for="q-qty">{t('Quantity')}</label>
+      <select id="q-qty" name="qty">{QTY.map(q => <option>{q}</option>)}</select></div>
+  </div>
+  {logoField && <div class="field"><label for="q-logo">{t('Logo or brand guide (optional)')}</label><input id="q-logo" name="logo" type="file" accept="image/*,.pdf,.ai,.eps,.svg"></div>}
+  <div class="field"><label for="q-msg">{t('Details')}</label><textarea id="q-msg" name="message" rows="4" placeholder={placeholder}></textarea></div>
+  <button class="btn btn-red squish" type="submit">{t('Send request')}</button>
+  <p class="form-msg" role="status"></p>
+</form>

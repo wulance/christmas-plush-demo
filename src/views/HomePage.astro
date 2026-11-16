@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Timeline from '../components/Timeline.astro';
+import Faq from '../components/Faq.astro';
+import { ORG_ID, ROUTES, SITE_NAME, absUrl, absPageUrl, breadcrumbLd, link, url } from '../data/site';
+import type { RouteKey } from '../data/site';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = translator(locale);
+
+const route: RouteKey = 'home';
+
+const jsonLd = [
+  {
+    '@type': 'Organization',
+    '@id': ORG_ID,
+    name: SITE_NAME,
+    url: absUrl(),
+    logo: absUrl('assets/logo.png'),
+    description: t("Plush toy design studio: custom company mascots, seasonal collections and photo-to-plush characters."),
+  },
+  {
+    '@type': 'WebSite',
+    '@id': absUrl('#website'),
+    url: absPageUrl('home', locale),
+    name: SITE_NAME,
+    publisher: { '@id': ORG_ID },
+    inLanguage: locale === 'zh' ? 'zh-Hans' : t("en"),
+  },
+  {
+    '@type': 'ItemList',
+    name: t("Plush collections"),
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t("Corporate custom plush"), url: absPageUrl('corporate', locale) },
+      { '@type': 'ListItem', position: 2, name: t("Christmas collection"), url: absPageUrl('christmas', locale) },
+      { '@type': 'ListItem', position: 3, name: t("Photo to plush"), url: absPageUrl('photo', locale) },
+    ],
+  },
+];
+
+const STEPS = [
+  {
+    title: t("1. Sketch"),
+    text: t("We sketch the character and agree its personality, proportions and colors with you."),
+    svg: "<svg viewBox=\"0 0 120 90\" aria-hidden=\"true\"><rect x=\"10\" y=\"6\" width=\"100\" height=\"78\" rx=\"6\" fill=\"#fff\" stroke=\"#e2d8c8\" stroke-width=\"2\"/><circle cx=\"60\" cy=\"44\" r=\"22\" fill=\"none\" stroke=\"#7a6f62\" stroke-width=\"2\" stroke-dasharray=\"5 3\"/><circle cx=\"44\" cy=\"22\" r=\"7\" fill=\"none\" stroke=\"#7a6f62\" stroke-width=\"2\"/><circle cx=\"76\" cy=\"22\" r=\"7\" fill=\"none\" stroke=\"#7a6f62\" stroke-width=\"2\"/><circle cx=\"52\" cy=\"40\" r=\"2.5\" fill=\"#7a6f62\"/><circle cx=\"68\" cy=\"40\" r=\"2.5\" fill=\"#7a6f62\"/><path d=\"M92 70 L104 58\" stroke=\"#e0a83a\" stroke-width=\"5\" stroke-linecap=\"round\"/></svg>",
+  },
+  {
+    title: t("2. Pattern"),
+    text: t("The sketch becomes a sewing pattern, and we test the 3D shape in calico."),
+    svg: "<svg viewBox=\"0 0 120 90\" aria-hidden=\"true\"><path d=\"M18 20 Q40 6 58 22 L50 70 Q30 76 18 64 Z\" fill=\"#fbe8d0\" stroke=\"#c4874f\" stroke-width=\"2\"/><path d=\"M12 16 Q40 0 64 18 L56 76 Q28 84 12 68 Z\" fill=\"none\" stroke=\"#c4874f\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/><rect x=\"70\" y=\"18\" width=\"34\" height=\"52\" rx=\"16\" fill=\"#fbe8d0\" stroke=\"#c4874f\" stroke-width=\"2\"/><rect x=\"65\" y=\"13\" width=\"44\" height=\"62\" rx=\"20\" fill=\"none\" stroke=\"#c4874f\" stroke-width=\"1.5\" stroke-dasharray=\"4 3\"/></svg>",
+  },
+  {
+    title: t("3. Fabric & sample"),
+    text: t("We choose the fabric, match the colors and sew a sample for you to approve."),
+    svg: "<svg viewBox=\"0 0 120 90\" aria-hidden=\"true\"><rect x=\"14\" y=\"20\" width=\"40\" height=\"52\" rx=\"4\" fill=\"#9fd8c4\" transform=\"rotate(-8 34 46)\"/><rect x=\"40\" y=\"16\" width=\"40\" height=\"52\" rx=\"4\" fill=\"#3b7dd8\"/><rect x=\"66\" y=\"20\" width=\"40\" height=\"52\" rx=\"4\" fill=\"#f2ebe0\" stroke=\"#e2d8c8\" stroke-width=\"2\" transform=\"rotate(8 86 46)\"/><path d=\"M30 82 Q60 60 96 80\" fill=\"none\" stroke=\"#e0a83a\" stroke-width=\"2\" stroke-dasharray=\"4 3\"/></svg>",
+  },
+  {
+    title: t("4. Production & QC"),
+    text: t("We sew, stuff, safety-test and inspect every piece. This usually takes 15–25 days after you approve the sample."),
+    svg: "<svg viewBox=\"0 0 120 90\" aria-hidden=\"true\"><circle cx=\"40\" cy=\"22\" r=\"10\" fill=\"#9fd8c4\"/><circle cx=\"80\" cy=\"22\" r=\"10\" fill=\"#9fd8c4\"/><ellipse cx=\"60\" cy=\"50\" rx=\"36\" ry=\"32\" fill=\"#9fd8c4\"/><ellipse cx=\"60\" cy=\"66\" rx=\"18\" ry=\"11\" fill=\"#fff4e6\"/><circle cx=\"48\" cy=\"44\" r=\"3.5\" fill=\"#1b2b22\"/><circle cx=\"72\" cy=\"44\" r=\"3.5\" fill=\"#1b2b22\"/><path d=\"M54 54 Q60 59 66 54\" stroke=\"#1b2b22\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M92 74 L100 82 L114 64\" fill=\"none\" stroke=\"#2f7d4f\" stroke-width=\"5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+  },
+];
+
+const FAQ = [
+  {
+    q: t("What is the minimum order?"),
+    a: t("Corporate custom plush starts at 50 pieces. Christmas and photo-to-plush items can be ordered one at a time."),
+  },
+  {
+    q: t("How long does a custom plush take?"),
+    a: t("The first digital design takes 2–3 days and a physical sample takes 7–10 days. Production takes 15–25 days after you approve the sample, plus shipping."),
+  },
+  {
+    q: t("Are your plush toys safe for children?"),
+    a: t("Our designs are tested to EN71, ASTM F963 and CPSIA, and we embroider eyes rather than using hard parts for young children. (Placeholder: replace with your real certifications.)"),
+  },
+  {
+    q: t("Do you ship internationally?"),
+    a: t("Yes. We ship worldwide, and each collection page shows delivery times and holiday deadlines for your country."),
+  },
+];
+---
+<BaseLayout
+  locale={locale}
+  route={route}
+  title={t("Custom Plush Toys Designed In-House | Company Mascots, Christmas & Photo Plush | Snugglecraft")}
+  description={t("Snugglecraft is a plush design studio. We design custom plush mascots from your logo, seasonal Christmas plush, and cartoon plush dolls made from your photos. Shipping worldwide.")}
+  ogTitle={t("Snugglecraft: plush toys designed around your story")}
+  ogDescription={t("Custom company mascots, the Christmas collection, and photo-to-plush characters, all designed in-house.")}
+  ogImage="assets/og-home.png"
+  notice={t("Prototype: brand name, prices, figures and certifications are placeholders. Nothing is charged or sent.")}
+  jsonLd={jsonLd}
+>
+  <section class="hero hero-home">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">{t("Original plush design studio")}</p>
+        <h1>{t("Plush toys designed around your story")}</h1>
+        <p class="lead">{t("We turn company logos into mascots, design seasonal collections, and make cartoon plush from your photos. Our own designers draw every character, and we sew each one with care.")}</p>
+        <div class="cta-row">
+          <a class="btn btn-red squish" href="#collections">{t("Explore collections")}</a>
+          <a class="btn btn-ghost squish" href={link('corporate', route, locale, 'quote')}>{t("Get a quote")}</a>
+        </div>
+        <div class="stats" aria-label={t("Studio in numbers (placeholder figures)")}>
+          <div><strong>1,200+</strong><span>{t("original designs")}</span></div>
+          <div><strong>40+</strong><span>{t("countries shipped")}</span></div>
+          <div><strong>{t("7–10 days")}</strong><span>{t("to first sample")}</span></div>
+          <div><strong>{t("50 pcs")}</strong><span>{t("company minimum")}</span></div>
+        </div>
+      </div>
+      <div class="mascot-stage">
+        <p class="bubble" id="bubble" aria-live="polite">{t("Hi! I'm Momo. Give me a squeeze!")}</p>
+        <svg id="momo" viewBox="0 0 320 300" role="img" aria-labelledby="momo-t" tabindex="0">
+          <title id="momo-t">{t("Momo, the Snugglecraft mascot plush. Click to squeeze.")}</title>
+          <g fill="#9fd8c4" stroke="#7cbfa9" stroke-width="3">
+            <circle cx="88" cy="78" r="34"/><circle cx="232" cy="78" r="34"/>
+            <ellipse cx="62" cy="200" rx="22" ry="36" transform="rotate(25 62 200)"/>
+            <ellipse cx="258" cy="200" rx="22" ry="36" transform="rotate(-25 258 200)"/>
+            <ellipse cx="118" cy="270" rx="34" ry="20"/><ellipse cx="202" cy="270" rx="34" ry="20"/>
+          </g>
+          <circle cx="90" cy="80" r="17" fill="#f7b7a3"/><circle cx="230" cy="80" r="17" fill="#f7b7a3"/>
+          <ellipse cx="160" cy="165" rx="112" ry="104" fill="#9fd8c4" stroke="#7cbfa9" stroke-width="3"/>
+          <ellipse cx="160" cy="224" rx="62" ry="38" fill="#fff4e6"/>
+          <ellipse cx="160" cy="224" rx="56" ry="32" fill="none" stroke="#e6d5bf" stroke-width="2" stroke-dasharray="5 4"/>
+          <path d="M160 244 C140 228 136 212 148 206 C155 202 160 208 160 212 C160 208 165 202 172 206 C184 212 180 228 160 244 Z" fill="#f07a6a"/>
+          <g id="eyes">
+            <circle cx="124" cy="138" r="11" fill="#1b2b22"/><circle cx="128" cy="134" r="4" fill="#fff"/>
+            <circle cx="196" cy="138" r="11" fill="#1b2b22"/><circle cx="200" cy="134" r="4" fill="#fff"/>
+          </g>
+          <ellipse cx="160" cy="160" rx="9" ry="6" fill="#1b2b22"/>
+          <path d="M150 170 Q160 178 170 170" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="104" cy="166" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/><ellipse cx="216" cy="166" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="collections" aria-labelledby="col-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">{t("Collections")}</p>
+        <h2 id="col-h">{t("Three ways to make a plush that's yours")}</h2>
+        <p>{t("Each collection starts with our design team and ends with a plush you can hug.")}</p>
+      </div>
+      <div class="collections">
+        <a class="collection reveal" href={link('corporate', route, locale)} style="--bg:#e3eefb">
+          <span class="tag">{t("For companies")}</span>
+          <div class="art"><img src={url('assets/art-corporate.svg')} width="320" height="300" alt={t("Blue mascot plush with a company logo patch on its belly")} loading="lazy"></div>
+          <div class="body">
+            <h3>{t("Corporate custom plush")}</h3>
+            <p>{t("Mascots designed from your logo, brand colors and company culture. Great for employee gifts, events and merchandise.")}</p>
+            <span class="more">{t("Design a mascot →")}</span>
+          </div>
+        </a>
+        <a class="collection reveal" href={link('christmas', route, locale)} style="--bg:#e6f2ea">
+          <span class="tag">{t("In season")}</span>
+          <div class="art"><img src={url('assets/christmas-hero.svg')} width="560" height="440" alt={t("Plush Christmas tree advent calendar and a personalized reindeer plush")} loading="lazy"></div>
+          <div class="body">
+            <h3>{t("Christmas collection")}</h3>
+            <p>{t("A plush tree advent calendar with 24 ornaments, and reindeer you dress and name yourself.")}</p>
+            <span class="more">{t("Shop Christmas →")}</span>
+          </div>
+        </a>
+        <a class="collection reveal" href={link('photo', route, locale)} style="--bg:#fdeee0">
+          <span class="tag">{t("Personal gifts")}</span>
+          <div class="art"><img src={url('assets/art-photo.svg')} width="380" height="300" alt={t("A photo of a person turned into a cartoon plush doll")} loading="lazy"></div>
+          <div class="body">
+            <h3>{t("Photo to plush")}</h3>
+            <p>{t("Send a photo of a person or pet, and our illustrators turn it into a cartoon character plush.")}</p>
+            <span class="more">{t("Try the style preview →")}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="studio" aria-labelledby="studio-h">
+    <div class="wrap two-col">
+      <div>
+        <div class="compare" id="compare" style="--pos:50%">
+          <svg viewBox="0 0 320 300" aria-hidden="true">
+            <defs><pattern id="grid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0 H0 V16" fill="none" stroke="#e8e1d4" stroke-width="1"/></pattern></defs>
+            <rect width="320" height="300" fill="#fffdf8"/><rect width="320" height="300" fill="url(#grid)"/>
+            <g fill="none" stroke="#6d625a" stroke-width="2" stroke-linecap="round">
+              <path d="M160 40 V290 M30 138 H290" stroke="#c9bfb0" stroke-dasharray="6 6" stroke-width="1.5"/>
+              <circle cx="88" cy="78" r="34"/><circle cx="232" cy="78" r="34"/>
+              <circle cx="90" cy="80" r="17" stroke-dasharray="3 3"/><circle cx="230" cy="80" r="17" stroke-dasharray="3 3"/>
+              <ellipse cx="62" cy="200" rx="22" ry="36" transform="rotate(25 62 200)"/>
+              <ellipse cx="258" cy="200" rx="22" ry="36" transform="rotate(-25 258 200)"/>
+              <ellipse cx="118" cy="270" rx="34" ry="20"/><ellipse cx="202" cy="270" rx="34" ry="20"/>
+              <ellipse cx="160" cy="165" rx="112" ry="104"/>
+              <ellipse cx="160" cy="224" rx="62" ry="38"/>
+              <ellipse cx="160" cy="224" rx="56" ry="32" stroke-dasharray="4 4" stroke="#b5a998"/>
+              <path d="M160 244 C140 228 136 212 148 206 C155 202 160 208 160 212 C160 208 165 202 172 206 C184 212 180 228 160 244 Z"/>
+              <circle cx="124" cy="138" r="11"/><circle cx="196" cy="138" r="11"/>
+              <ellipse cx="160" cy="160" rx="9" ry="6"/>
+              <path d="M150 170 Q160 178 170 170"/>
+            </g>
+            <g font-family="'Segoe Print', 'Comic Sans MS', cursive" font-size="11" fill="#8a7f72">
+              <text x="14" y="30">{t("Ears: 2 pcs + pink lining")}</text>
+              <text x="200" y="128">{t("Embroidered eyes")}</text>
+              <text x="14" y="252">{t("Belly patch, top-stitched")}</text>
+              <text x="208" y="296">Momo v3 · 30 cm</text>
+            </g>
+          </svg>
+          <svg class="plush-layer" viewBox="0 0 320 300" aria-hidden="true">
+            <defs><radialGradient id="soft" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#f3e8d6"/></radialGradient></defs>
+            <rect width="320" height="300" fill="url(#soft)"/>
+            <g fill="#9fd8c4" stroke="#7cbfa9" stroke-width="3">
+              <circle cx="88" cy="78" r="34"/><circle cx="232" cy="78" r="34"/>
+              <ellipse cx="62" cy="200" rx="22" ry="36" transform="rotate(25 62 200)"/>
+              <ellipse cx="258" cy="200" rx="22" ry="36" transform="rotate(-25 258 200)"/>
+              <ellipse cx="118" cy="270" rx="34" ry="20"/><ellipse cx="202" cy="270" rx="34" ry="20"/>
+            </g>
+            <circle cx="90" cy="80" r="17" fill="#f7b7a3"/><circle cx="230" cy="80" r="17" fill="#f7b7a3"/>
+            <ellipse cx="160" cy="165" rx="112" ry="104" fill="#9fd8c4" stroke="#7cbfa9" stroke-width="3"/>
+            <ellipse cx="160" cy="224" rx="62" ry="38" fill="#fff4e6"/>
+            <ellipse cx="160" cy="224" rx="56" ry="32" fill="none" stroke="#e6d5bf" stroke-width="2" stroke-dasharray="5 4"/>
+            <path d="M160 244 C140 228 136 212 148 206 C155 202 160 208 160 212 C160 208 165 202 172 206 C184 212 180 228 160 244 Z" fill="#f07a6a"/>
+            <circle cx="124" cy="138" r="11" fill="#1b2b22"/><circle cx="128" cy="134" r="4" fill="#fff"/>
+            <circle cx="196" cy="138" r="11" fill="#1b2b22"/><circle cx="200" cy="134" r="4" fill="#fff"/>
+            <ellipse cx="160" cy="160" rx="9" ry="6" fill="#1b2b22"/>
+            <path d="M150 170 Q160 178 170 170" fill="none" stroke="#1b2b22" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="104" cy="166" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/><ellipse cx="216" cy="166" rx="12" ry="7" fill="#f7a6a6" opacity=".6"/>
+          </svg>
+          <div class="divider" aria-hidden="true"></div>
+          <input type="range" id="compare-range" min="0" max="100" value="50" aria-label={t("Slide to compare the design sketch with the finished plush")}>
+        </div>
+        <div class="compare-labels" aria-hidden="true"><span>{t("Design sketch")}</span><span>{t("Finished plush")}</span></div>
+      </div>
+      <div>
+        <p class="eyebrow">{t("Our design studio")}</p>
+        <h2 id="studio-h">{t("Every plush starts as a drawing")}</h2>
+        <p>{t("Drag the slider to compare a designer's sketch with the finished plush. We don't resell catalog toys: our in-house team draws every character, writes the sewing pattern and checks the sample. That's how we keep a mascot's expression right, all the way from the screen to the stitching.")}</p>
+        <ul class="capabilities">
+          <li><strong>{t("Character design")}</strong><span>{t("We design from your logo, brief or photo")}</span></li>
+          <li><strong>{t("Pattern making")}</strong><span>{t("We draft the pattern and test it in calico")}</span></li>
+          <li><strong>{t("Color matching")}</strong><span>{t("We match fabric and thread to your Pantone colors")}</span></li>
+          <li><strong>{t("Safety testing")}</strong><span>{t("EN71 · ASTM F963 · CPSIA (placeholder)")}</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process" aria-labelledby="process-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">{t("How we work")}</p>
+        <h2 id="process-h">{t("From sketch to plush in four steps")}</h2>
+      </div>
+      <Timeline steps={STEPS} />
+    </div>
+  </section>
+
+  <Faq heading={t("Frequently asked questions")} items={FAQ} alt />
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2>{t("Have an idea for a plush?")}</h2>
+          <p>{t("Send us a sketch, a logo or a photo. We'll reply with a free digital design within 3 business days.")}</p>
+        </div>
+        <div class="btn-row">
+          <a class="btn btn-gold squish" href={link('corporate', route, locale, 'quote')}>{t("Request a quote")}</a>
+          <a class="btn btn-ghost squish" href={link('photo', route, locale)}>{t("Start from a photo")}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    import '../scripts/home.js';
+  </script>
+</BaseLayout>

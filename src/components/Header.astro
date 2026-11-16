@@ -1,0 +1,36 @@
+---
+import Logo from './Logo.astro';
+import { MAIN_NAV, ROUTES, link, pageUrl, url, type RouteKey } from '../data/site';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props { route: RouteKey; locale: Locale }
+const { route, locale } = Astro.props;
+const t = translator(locale);
+const cartHref = route === 'christmas' ? '#tree-calendar' : pageUrl('christmas', locale);
+---
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href={pageUrl('home', locale)} aria-label={t('Snugglecraft home')} aria-current={route === 'home' ? 'page' : undefined}>
+      <Logo />
+      <span>Snugglecraft</span>
+    </a>
+    <nav class="main-nav" id="main-nav" aria-label={t('Main')}>
+      {MAIN_NAV.map(item => (
+        <a
+          class={item.cta ? 'nav-cta' : undefined}
+          href={link(item.to, route, locale, item.hash)}
+          aria-current={item.route && item.to === route ? 'page' : undefined}
+        >{t(item.label)}</a>
+      ))}
+    </nav>
+    <div class="header-tools">
+      <nav class="lang" aria-label={t('Language')}>
+        <a href={pageUrl(route, 'en')} hreflang="en" lang="en" aria-current={locale === 'en' ? 'page' : undefined}>EN</a>
+        <a href={pageUrl(route, 'zh')} hreflang="zh-Hans" lang="zh-Hans" aria-current={locale === 'zh' ? 'page' : undefined}>中文</a>
+      </nav>
+      <slot />
+      <a class="cart" href={cartHref} aria-label={t('Cart')}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.5L20.5 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg><span id="cart-count">0</span></a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="main-nav">☰<span class="sr">{t('Menu')}</span></button>
+    </div>
+  </div>
+</header>
