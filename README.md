@@ -23,6 +23,14 @@ The header language switch and `hreflang` / canonical / sitemap URLs all use the
 
 Brand names, prices, lead times, shipping deadlines and certifications are placeholders. Forms validate and show a thank-you message but send nothing. The cart is a local counter with no checkout or payment.
 
+
+## Visual system
+
+"Pattern studio": warm pattern-paper, deep ink, stitched-seam dashed borders, graph-paper drawing-board plates and tactile, sticker-like buttons. The system lives in `src/styles/global.css`.
+
+- Fonts are self-hosted from npm (`@fontsource-variable/*`, SIL OFL): Fraunces (display), Nunito (body) and Caveat (designer's sketch notes). No external font service is used. Simplified Chinese pages keep those Latin fonts and fall back to system CJK faces, with slightly looser heading tracking.
+- Each page sets `body[data-collection]` (`home`, `corporate`, `christmas`, `photo`), which tints accent colours. Christmas keeps its pine/berry palette as one collection; the studio itself uses ink and coral.
+
 ## Commands
 
 ```sh

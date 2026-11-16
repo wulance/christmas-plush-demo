@@ -1,6 +1,10 @@
 ---
 /* Shared page shell: <head> metadata, demo notice bar, header, footer, toast.
    Every page passes its own SEO copy, notice text and JSON-LD graph. */
+// Self-hosted, OFL-licensed fonts (bundled into the build; no external font service).
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/nunito';
+import '@fontsource-variable/caveat';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -48,11 +52,11 @@ const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonLd }
 <meta property="og:url" content={pageUrl}>
 <meta property="og:image" content={absUrl(ogImage)}>
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1f4d36">
+<meta name="theme-color" content="#1f1d3d">
 <link rel="icon" href={url('assets/favicon.svg')} type="image/svg+xml">
 <script type="application/ld+json" is:inline set:html={ld}></script>
 </head>
-<body>
+<body data-collection={route}>
 <a class="skip" href="#main">{t('Skip to content')}</a>
 <div class="proto-bar" role="note">{notice}</div>
 
