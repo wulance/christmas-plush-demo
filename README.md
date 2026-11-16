@@ -32,7 +32,9 @@ npm run build     # production static build -> dist/
 npm run preview   # serve dist/ locally under the base path
 ```
 
-GitHub Pages is built from this repository by a GitHub Actions workflow (`npm ci` + `npm run build`) that deploys the `dist/` output. Do not commit `node_modules/` or `dist/`.
+The preview is served from the `gh-pages` branch, which holds the static `dist/` output of `npm run build`. The Astro source lives on `main`. Do not commit `node_modules/` or `dist/` on `main`.
+
+A GitHub Actions workflow that would build and deploy `dist/` automatically could not be added in this pass, because the GitHub login used here cannot create workflow files. The workflow file is kept as a draft outside the repository.
 
 ## Structure
 
