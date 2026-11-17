@@ -1,6 +1,7 @@
 ---
-/* Studio: design capability. Burrow Mole (our original 3D concept, v0.4), the full
-   process, the sketch-to-colour slider and what the studio does. */
+/* Studio: design capability. The original-concept portfolio (Burrow Mole v0.4 and
+   Nib the owlet v0.2, both 3D concepts with no physical sample), the full process,
+   the sketch-to-colour slider and what the studio does. */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Timeline from '../components/Timeline.astro';
 import ConceptFigure from '../components/ConceptFigure.astro';
@@ -14,6 +15,7 @@ const t = translator(locale);
 
 const route: RouteKey = 'studio';
 const sheet = conceptImage('turnaround');
+const nibSheet = conceptImage('turnaround', 'nib');
 
 const jsonLd = [
   {
@@ -64,6 +66,20 @@ const NOTES = [
   [t("Size targets"), t("About 24 cm tall and 30 cm wide, measured on the 3D model. Not verified on a sample.")],
 ];
 
+const NIB_NOTES = [
+  [t("Silhouette"), t("A dusty-blue, chubby owlet with a cream heart-shaped face, little tufts, a small soft beak and wings held out as if for a hug.")],
+  [t("Eyes"), t("Matte satin-stitched oval eye fills with white stitched highlights, not glossy hard eyes.")],
+  [t("Feet"), t("One-piece mustard felt feet with three toes. The stitches sit in the valleys between the toes.")],
+  [t("Size targets"), t("23.2 cm tall × 23.7 cm wide (wing tip to wing tip) × 19.0 cm deep. These are model targets pending sampling; the turnaround sheet shows them rounded.")],
+];
+
+const CONCEPTS = [
+  { id: 'burrow-mole', character: 'burrow-mole' as const, name: t("Burrow Mole"), version: t("Option A · concept v0.4"),
+    text: t("A low, pear-shaped mole with a flower nose and spade paws, refined at checkpoint v0.4.") },
+  { id: 'nib', character: 'nib' as const, name: t("Nib the owlet"), version: t("Concept v0.2"),
+    text: t("A chubby dusty-blue owlet with a heart-shaped face, stitched eyes and felt feet.") },
+];
+
 const CAPABILITIES = [
   [t("Character design"), t("We design from your logo, brief or photo.")],
   [t("Pattern making"), t("We draft the pattern and test it in calico.")],
@@ -75,26 +91,49 @@ const CAPABILITIES = [
   locale={locale}
   route={route}
   title={t("Our Plush Design Studio: Original Characters, Patterns & Process | Snugglecraft")}
-  description={t("How Snugglecraft designs plush in-house: our original character Burrow Mole shown as 3D concept renderings, the sketch-to-production process and what the studio does.")}
+  description={t("How Snugglecraft designs plush in-house: our original characters Burrow Mole and Nib the owlet shown as 3D concept renderings, the sketch-to-production process and what the studio does.")}
   ogTitle={t("Inside the Snugglecraft design studio")}
-  ogDescription={t("Burrow Mole, our original plush character (3D concept, v0.4), and how we take any plush from sketch to production.")}
+  ogDescription={t("Our original plush characters, Burrow Mole (v0.4) and Nib the owlet (v0.2), shown as 3D concepts, and how we take any plush from sketch to production.")}
   ogImage="assets/concept/burrow-mole-v04-turnaround-1200.jpg"
   ogImageAlt={t("Front, side and back 3D concept turnaround of Burrow Mole (option A, v0.4). Not a photograph of a manufactured sample.")}
   ogImageSize={[1200, 613]}
-  notice={t("Prototype site: Burrow Mole images are 3D concept renderings, not a manufactured sample. Certifications are placeholders.")}
+  notice={t("Prototype site: Burrow Mole and Nib images are 3D concept renderings, not photos of manufactured samples. Certifications are placeholders.")}
   jsonLd={jsonLd}
 >
   <header class="page-head">
     <div class="wrap">
       <nav class="crumbs" aria-label={t("Breadcrumb")}><a href={link('home', route, locale)}>{t("Home")}</a> › <span>{t("Studio")}</span></nav>
       <h1>{t("How we design an original plush")}</h1>
-      <p class="lead">{t("Every character is drawn, patterned and checked by our own team. Below is our original concept, Burrow Mole, followed by the steps any plush goes through with us.")}</p>
-      <nav class="page-toc" aria-label={t("On this page")}><a href="#burrow-mole">{t("Burrow Mole")}</a><a href="#process">{t("Process")}</a><a href="#capabilities">{t("What we do")}</a></nav>
+      <p class="lead">{t("Every character is drawn, patterned and checked by our own team. Below are two of our original concepts, followed by the steps any plush goes through with us.")}</p>
+      <nav class="page-toc" aria-label={t("On this page")}><a href="#concepts">{t("Original concepts")}</a><a href="#burrow-mole">{t("Burrow Mole")}</a><a href="#nib">{t("Nib")}</a><a href="#process">{t("Process")}</a><a href="#capabilities">{t("What we do")}</a></nav>
     </div>
   </header>
 
+  <!-- Original concepts: the studio's own characters, presented equally -->
+  <section class="section" id="concepts" aria-labelledby="concepts-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="concepts-h">{t("Original concepts")}</h2>
+        <p>{t("Characters we design for ourselves, not customer projects. All images are 3D concept renderings; no physical sample of either character has been made.")}</p>
+      </div>
+      <ul class="concept-cards">
+        {CONCEPTS.map(c => (
+          <li class="concept-card">
+            <ConceptFigure locale={locale} role="hero" character={c.character} sizes="(min-width: 1180px) 548px, (min-width: 760px) calc(50vw - 32px), calc(100vw - 40px)">
+              <span>{c.name} · {t("3D concept rendering, not a photograph of a manufactured sample.")}</span>
+            </ConceptFigure>
+            <p class="concept-version">{c.version}</p>
+            <h3><a href={'#' + c.id}>{c.name}</a></h3>
+            <p>{c.text}</p>
+            <span class="concept-more" aria-hidden="true">{t("See all views ↓")}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <!-- Burrow Mole: original concept, technical views -->
-  <section class="section" id="burrow-mole" aria-labelledby="mole-h">
+  <section class="section section-tint" id="burrow-mole" aria-labelledby="mole-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="mole-h">{t("Burrow Mole, our original concept")}</h2>
@@ -103,7 +142,7 @@ const CAPABILITIES = [
 
       <!-- Wide screens: the full sheet. Narrow screens: the same views stacked (the sheet's notes would be unreadable). -->
       <ConceptFigure locale={locale} role="turnaround" class="sheet-wide" sizes="(min-width: 1180px) 1120px, calc(100vw - 40px)" fullSizeLink>
-        <span><strong>{t("Front, side and back turnaround")}</strong> · {t("3D concept, not a manufactured sample. Sizes are targets measured on the 3D model.")}</span>
+        <span><strong>{t("Front, side and back turnaround")}</strong> · {t("3D concept rendering, not a photograph of a manufactured sample. Sizes are targets measured on the 3D model.")}</span>
       </ConceptFigure>
       <div class="views-narrow">
         <ConceptFigure locale={locale} role="front" label={t("Front")} sizes="calc(100vw - 40px)" />
@@ -124,12 +163,42 @@ const CAPABILITIES = [
     </div>
   </section>
 
+  <!-- Nib the owlet: original concept v0.2, technical views (same pattern as Burrow Mole) -->
+  <section class="section" id="nib" aria-labelledby="nib-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="nib-h">{t("Nib the owlet, our original concept")}</h2>
+        <p>{t("Our own character, not a customer project. These are 3D concept renderings of concept version 0.2, dated 17 November 2026. No physical sample has been made.")}</p>
+      </div>
+
+      <ConceptFigure locale={locale} role="turnaround" character="nib" class="sheet-wide" sizes="(min-width: 1180px) 1120px, calc(100vw - 40px)" fullSizeLink>
+        <span><strong>{t("Front, side and back turnaround")}</strong> · {t("3D concept rendering, not a photograph of a manufactured sample. Measurements on the sheet are rounded model targets, pending sampling.")}</span>
+      </ConceptFigure>
+      <div class="views-narrow">
+        <ConceptFigure locale={locale} role="front" character="nib" label={t("Front")} class="view-square" sizes="(max-width: 479px) calc(100vw - 40px), 440px" />
+        <ConceptFigure locale={locale} role="side" character="nib" label={t("Side")} class="view-square" sizes="(max-width: 479px) calc(100vw - 40px), 440px" />
+        <ConceptFigure locale={locale} role="back" character="nib" label={t("Back")} class="view-square" sizes="(max-width: 479px) calc(100vw - 40px), 440px" />
+        <p class="small"><a href={nibSheet.full.href}>{t("Open the full turnaround sheet with notes")}</a> ({nibSheet.full.width} × {nibSheet.full.height} px JPEG)</p>
+      </div>
+
+      <div class="concept-detail concept-detail-wide">
+        <ConceptFigure locale={locale} role="face-feet-detail" character="nib" label={t("Face and feet detail")} sizes="(min-width: 1180px) 1120px, calc(100vw - 40px)" fullSizeLink />
+        <div>
+          <h3>{t("What concept v0.2 shows")}</h3>
+          <dl class="notes notes-grid">
+            {NIB_NOTES.map(([title, d]) => <div><dt>{title}</dt><dd>{d}</dd></div>)}
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Process: the sketch slider and the four steps -->
   <section class="section section-tint" id="process" aria-labelledby="process-h">
     <div class="wrap">
       <div class="section-head">
         <h2 id="process-h">{t("From sketch to plush in four steps")}</h2>
-        <p>{t("Burrow Mole is still at the first step. Steps 2–4 describe how any plush continues once a design is approved.")}</p>
+        <p>{t("Burrow Mole and Nib are both still at the first step. Steps 2–4 describe how any plush continues once a design is approved.")}</p>
       </div>
       <div class="split sketch-compare">
         <div>

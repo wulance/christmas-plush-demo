@@ -1,15 +1,16 @@
 ---
-/* A Burrow Mole concept rendering: WebP with JPEG fallback, responsive srcset,
-   real width/height and one compact, honest caption.
-   The images carry their own on-image caption at the bottom-left (and the turnaround
-   sheet a notice at the top-right), so they are never cropped or overlaid:
+/* An original-concept rendering (Burrow Mole or Nib): WebP with JPEG fallback, responsive
+   srcset, real width/height and one compact, honest caption.
+   The images carry their own on-image labels, so they are never cropped or overlaid:
    they keep their intrinsic aspect ratio. */
-import { conceptImage, type ConceptRole } from '../data/concept';
+import { CONCEPT_LABEL, conceptImage, type ConceptCharacter, type ConceptRole } from '../data/concept';
 import { translator, type Locale } from '../i18n/translate';
 
 interface Props {
   locale: Locale;
   role: ConceptRole;
+  /** Which character's manifest to use (default: Burrow Mole). */
+  character?: ConceptCharacter;
   /** `sizes` attribute describing the rendered width. */
   sizes: string;
   /** Short visible label, e.g. "Front" or "Face close-up". */
@@ -17,12 +18,12 @@ interface Props {
   loading?: 'lazy' | 'eager';
   fetchpriority?: 'high' | 'low' | 'auto';
   class?: string;
-  /** Add a link to the largest JPEG (for detailed sheets). */
+  /** Add a link to the largest JPEG derivative (for detailed sheets). */
   fullSizeLink?: boolean;
 }
-const { locale, role, sizes, label, loading = 'lazy', fetchpriority, class: className, fullSizeLink = false } = Astro.props;
+const { locale, role, character = 'burrow-mole', sizes, label, loading = 'lazy', fetchpriority, class: className, fullSizeLink = false } = Astro.props;
 const t = translator(locale);
-const img = conceptImage(role);
+const img = conceptImage(role, character);
 const hasSlot = Astro.slots.has('default');
 ---
 <figure class:list={['concept-figure', className]}>
@@ -32,9 +33,9 @@ const hasSlot = Astro.slots.has('default');
   </picture>
   <figcaption>
     {label && <strong>{label}</strong>}
-    {hasSlot ? <slot /> : <span>{label ? '· ' : ''}{t('3D concept, not a manufactured sample.')}</span>}
+    {hasSlot ? <slot /> : <span>{label ? '· ' : ''}{t(CONCEPT_LABEL + '.')}</span>}
     {fullSizeLink && (
-      <a href={img.full.href}>{t('Open the full-size sheet')} <span>({img.full.width} × {img.full.height} px JPEG, {img.full.kb} KB)</span></a>
+      <a href={img.full.href}>{t('Open the full-size sheet')} <span>{`(${img.full.width}\u00a0×\u00a0${img.full.height}\u00a0px JPEG, ${img.full.kb}\u00a0KB)`}</span></a>
     )}
   </figcaption>
 </figure>

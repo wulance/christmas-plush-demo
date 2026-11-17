@@ -129,7 +129,7 @@ const FAQ = [
         fetchpriority="high"
         sizes="(min-width: 1180px) 520px, (min-width: 900px) 44vw, (min-width: 600px) 560px, calc(100vw - 40px)"
       >
-        <span>{t("Burrow Mole, our original character · 3D concept, not a manufactured sample.")}</span>
+        <span>{t("Burrow Mole, one of our original characters · 3D concept rendering, not a photograph of a manufactured sample.")}</span>
       </ConceptFigure>
     </div>
   </section>
@@ -161,7 +161,7 @@ const FAQ = [
       <div>
         <h2 id="studio-h">{t("Designed in-house, step by step")}</h2>
         <p>{t("We don't resell catalog toys. Our team draws every character, writes the sewing pattern and checks the sample before anything goes into production.")}</p>
-        <a class="text-link" href={link('studio', route, locale)}>{t("Meet Burrow Mole, our original concept")} <span aria-hidden="true">→</span></a>
+        <a class="text-link" href={link('studio', route, locale, 'concepts')}>{t("See our original concepts")} <span aria-hidden="true">→</span></a>
       </div>
       <ol class="steps">
         {STEPS.map(([title, d]) => <li><strong>{title}</strong><span>{d}</span></li>)}

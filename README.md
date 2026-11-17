@@ -19,7 +19,7 @@ The header language switch and `hreflang` / canonical / sitemap URLs all use the
 - Corporate custom plush (mascot builder, placeholder pricing and the quote form)
 - Seasonal collection at `/christmas-plush/` (tree calendar, reindeer designer, advent calendar, shipping countdown). The nav label is "Seasonal"; the route is unchanged.
 - Photo to plush (local photo preview that never leaves the browser; the button wording does not imply a photo is sent)
-- Studio at `/studio/` and `/zh/studio/`: Burrow Mole (original 3D concept, v0.4), the full process, the sketch-to-colour slider and what the studio does
+- Studio at `/studio/` and `/zh/studio/`: original concepts Burrow Mole (v0.4) and Nib the owlet (v0.2), the full process, the sketch-to-colour slider and what the studio does
 
 ## Demo behavior
 
@@ -60,16 +60,16 @@ src/pages/              English routes and matching /zh/ routes
 src/scripts/            client JS modules, including runtime UI translations
 src/styles/global.css   shared stylesheet
 public/assets/          SVG artwork and favicon
-public/assets/concept/  Burrow Mole v0.4 web-optimized 3D concept renderings
+public/assets/concept/  Burrow Mole v0.4 and Nib the owlet v0.2 web-optimized 3D concept renderings
 src/data/concept.ts     manifest-driven srcsets, sizes and alt text
 src/components/ConceptFigure.astro  WebP + JPEG <picture> with an honest concept caption
 ```
 
-## Burrow Mole concept imagery
+## Original concept imagery
 
-The homepage hero and the `/studio/` (and `/zh/studio/`) page use the approved Burrow Mole (option A, v0.4) **3D concept renderings**. They are not photographs of a manufactured sample, customer work or catalogue images, and the site keeps saying so in both languages. A short homepage teaser at `/#studio` links to the studio page; the technical views live there.
+The homepage hero uses the approved Burrow Mole (option A, v0.4) **3D concept rendering**. The `/studio/` (and `/zh/studio/`) page shows two original concepts, side by side: Burrow Mole v0.4 and Nib the owlet v0.2. These are not photographs of a manufactured sample, customer work or catalogue images, and the site keeps saying so in both languages. No physical sample of either character has been made. A short homepage teaser at `/#studio` links to `/studio/#concepts`; the technical views live on the studio page. Nib does not appear on the homepage.
 
-- Images are rendered with `<ConceptFigure>`. It emits WebP + JPEG `srcset`s from the manifest, real `width`/`height`, translated alt text and a caption stating they are 3D concept renderings.
-- The images are never cropped (`object-fit: cover` is not used), so the burned-in concept captions stay visible.
-- Only the homepage hero loads eagerly; other concept views are lazy-loaded. On `/studio/` at 759px and below, the dense turnaround sheet is replaced by front, side and back views stacked vertically, plus a link to the full-size sheet.
-- Burrow Mole is still at the concept stage. The studio page says so above the process steps, so later steps do not imply a physical sample already exists.
+- Images are rendered with `<ConceptFigure>`. It emits WebP + JPEG `srcset`s from each character's manifest, real `width`/`height`, translated alt text and a caption stating they are 3D concept renderings.
+- The images are never cropped (`object-fit: cover` is not used), so the burned-in concept captions stay visible. Web derivatives are resize-only; the original sheets are not shipped.
+- Only the homepage hero loads eagerly; other concept views are lazy-loaded. On `/studio/` at 759px and below, each dense turnaround sheet is replaced by front, side and back views stacked vertically, plus a link to the full-size sheet.
+- Both characters are still at the concept stage. The studio page says so above the process steps, so later steps do not imply a physical sample already exists. Nib's measurements (23.2 cm tall × 23.7 cm wide × 19.0 cm deep) are model targets pending sampling.
