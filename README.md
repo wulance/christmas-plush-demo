@@ -57,4 +57,16 @@ src/pages/              English routes and matching /zh/ routes
 src/scripts/            client JS modules, including runtime UI translations
 src/styles/global.css   shared stylesheet
 public/assets/          SVG artwork and favicon
+public/assets/concept/  Burrow Mole v0.4 web-optimized 3D concept renderings
+src/data/concept.ts     manifest-driven srcsets, sizes and alt text
+src/components/ConceptFigure.astro  WebP + JPEG <picture> with an honest concept caption
 ```
+
+## Burrow Mole concept imagery
+
+The homepage hero and the studio section (`/#studio`, `/zh/#studio`) use the approved Burrow Mole (option A, v0.4) **3D concept renderings**. They are not photographs of a manufactured sample, customer work or catalogue images, and the site keeps saying so in both languages:
+
+- Images are rendered with `<ConceptFigure>`. It emits WebP + JPEG `srcset`s from the manifest, real `width`/`height`, translated alt text and a caption stating they are 3D concept renderings.
+- The images are never cropped (`object-fit: cover` is not used), so the burned-in concept captions stay visible.
+- Only the hero loads eagerly; other concept views are lazy-loaded. On narrow screens the dense turnaround sheet is replaced by front / side / back views in a swipeable strip, with a link to the full-size sheet.
+- Momo, the squeezable mascot in the final call to action, is an SVG illustration inside a real button. The concept renderings are never animated or "squeezed".

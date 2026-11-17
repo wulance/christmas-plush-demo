@@ -53,6 +53,14 @@ if (menuBtn && nav) {
   nav.addEventListener('click', e => {
     if (e.target.closest('a')) { nav.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
   });
+  // Escape closes the open mobile menu and returns focus to its button.
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
 }
 
 if ('IntersectionObserver' in window && !reduceMotion) {

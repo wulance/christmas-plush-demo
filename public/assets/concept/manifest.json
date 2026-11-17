@@ -1,0 +1,283 @@
+{
+  "note": "Web-optimized derivatives of Burrow Mole v0.4 3D concept renderings. These are concept images, not photographs of a manufactured sample. On-image captions already include that label. Do not present them as product photos, customer work, or finished samples.",
+  "character": "Burrow Mole (option A), concept version 0.4",
+  "originals_not_in_this_tree": true,
+  "images": [
+    {
+      "role": "hero",
+      "slug": "burrow-mole-v04-hero",
+      "source_name": "burrow_mole_v04_hero.png",
+      "source_width": 1400,
+      "source_height": 1100,
+      "alt": "Three-quarter 3D concept rendering of the Burrow Mole plush design, option A, version 0.4. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-hero-800.webp",
+          "format": "webp",
+          "width": 800,
+          "height": 629,
+          "bytes": 21228
+        },
+        {
+          "file": "burrow-mole-v04-hero-800.jpg",
+          "format": "jpg",
+          "width": 800,
+          "height": 629,
+          "bytes": 48785
+        },
+        {
+          "file": "burrow-mole-v04-hero-1100.webp",
+          "format": "webp",
+          "width": 1100,
+          "height": 864,
+          "bytes": 38162
+        },
+        {
+          "file": "burrow-mole-v04-hero-1100.jpg",
+          "format": "jpg",
+          "width": 1100,
+          "height": 864,
+          "bytes": 90747
+        },
+        {
+          "file": "burrow-mole-v04-hero-1400.webp",
+          "format": "webp",
+          "width": 1400,
+          "height": 1100,
+          "bytes": 59552
+        },
+        {
+          "file": "burrow-mole-v04-hero-1400.jpg",
+          "format": "jpg",
+          "width": 1400,
+          "height": 1100,
+          "bytes": 142247
+        }
+      ]
+    },
+    {
+      "role": "face-closeup",
+      "slug": "burrow-mole-v04-face-closeup",
+      "source_name": "burrow_mole_v04_face_closeup.png",
+      "source_width": 1200,
+      "source_height": 900,
+      "alt": "Close-up 3D concept rendering of the Burrow Mole face, showing flat satin-stitch embroidery. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-face-closeup-800.webp",
+          "format": "webp",
+          "width": 800,
+          "height": 600,
+          "bytes": 70342
+        },
+        {
+          "file": "burrow-mole-v04-face-closeup-800.jpg",
+          "format": "jpg",
+          "width": 800,
+          "height": 600,
+          "bytes": 114933
+        },
+        {
+          "file": "burrow-mole-v04-face-closeup-1200.webp",
+          "format": "webp",
+          "width": 1200,
+          "height": 900,
+          "bytes": 146394
+        },
+        {
+          "file": "burrow-mole-v04-face-closeup-1200.jpg",
+          "format": "jpg",
+          "width": 1200,
+          "height": 900,
+          "bytes": 249031
+        }
+      ]
+    },
+    {
+      "role": "turnaround",
+      "slug": "burrow-mole-v04-turnaround",
+      "source_name": "burrow_mole_v04_turnaround.png",
+      "source_width": 3428,
+      "source_height": 1750,
+      "alt": "Front, side and back 3D concept turnaround of the Burrow Mole plush design, option A, version 0.4, with notes. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-turnaround-1200.webp",
+          "format": "webp",
+          "width": 1200,
+          "height": 613,
+          "bytes": 48058
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-1200.jpg",
+          "format": "jpg",
+          "width": 1200,
+          "height": 613,
+          "bytes": 106814
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-1600.webp",
+          "format": "webp",
+          "width": 1600,
+          "height": 817,
+          "bytes": 79690
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-1600.jpg",
+          "format": "jpg",
+          "width": 1600,
+          "height": 817,
+          "bytes": 178456
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-2200.webp",
+          "format": "webp",
+          "width": 2200,
+          "height": 1123,
+          "bytes": 145934
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-2200.jpg",
+          "format": "jpg",
+          "width": 2200,
+          "height": 1123,
+          "bytes": 313725
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-2800.webp",
+          "format": "webp",
+          "width": 2800,
+          "height": 1429,
+          "bytes": 215376
+        },
+        {
+          "file": "burrow-mole-v04-turnaround-2800.jpg",
+          "format": "jpg",
+          "width": 2800,
+          "height": 1429,
+          "bytes": 470342
+        }
+      ]
+    },
+    {
+      "role": "front",
+      "slug": "burrow-mole-v04-front",
+      "source_name": "burrow_mole_v04_front.png",
+      "source_width": 1100,
+      "source_height": 780,
+      "alt": "Front 3D concept rendering of the Burrow Mole plush design, option A, version 0.4. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-front-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 496,
+          "bytes": 18160
+        },
+        {
+          "file": "burrow-mole-v04-front-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 496,
+          "bytes": 45495
+        },
+        {
+          "file": "burrow-mole-v04-front-1100.webp",
+          "format": "webp",
+          "width": 1100,
+          "height": 780,
+          "bytes": 43726
+        },
+        {
+          "file": "burrow-mole-v04-front-1100.jpg",
+          "format": "jpg",
+          "width": 1100,
+          "height": 780,
+          "bytes": 101839
+        }
+      ]
+    },
+    {
+      "role": "side",
+      "slug": "burrow-mole-v04-side",
+      "source_name": "burrow_mole_v04_side.png",
+      "source_width": 1100,
+      "source_height": 780,
+      "alt": "Side 3D concept rendering of the Burrow Mole plush design, option A, version 0.4. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-side-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 496,
+          "bytes": 17896
+        },
+        {
+          "file": "burrow-mole-v04-side-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 496,
+          "bytes": 42955
+        },
+        {
+          "file": "burrow-mole-v04-side-1100.webp",
+          "format": "webp",
+          "width": 1100,
+          "height": 780,
+          "bytes": 41246
+        },
+        {
+          "file": "burrow-mole-v04-side-1100.jpg",
+          "format": "jpg",
+          "width": 1100,
+          "height": 780,
+          "bytes": 96925
+        }
+      ]
+    },
+    {
+      "role": "back",
+      "slug": "burrow-mole-v04-back",
+      "source_name": "burrow_mole_v04_back.png",
+      "source_width": 1100,
+      "source_height": 780,
+      "alt": "Back 3D concept rendering of the Burrow Mole plush design, option A, version 0.4. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "burrow-mole-v04-back-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 496,
+          "bytes": 19896
+        },
+        {
+          "file": "burrow-mole-v04-back-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 496,
+          "bytes": 45220
+        },
+        {
+          "file": "burrow-mole-v04-back-1100.webp",
+          "format": "webp",
+          "width": 1100,
+          "height": 780,
+          "bytes": 48134
+        },
+        {
+          "file": "burrow-mole-v04-back-1100.jpg",
+          "format": "jpg",
+          "width": 1100,
+          "height": 780,
+          "bytes": 105513
+        }
+      ]
+    }
+  ]
+}

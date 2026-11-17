@@ -119,6 +119,13 @@ export function t(s) {
 }
 
 export const msg = {
+  compareValuetext(n) {
+    const colour = 100 - Number(n);
+    const sketch = Number(n);
+    return isZh()
+      ? `${colour}% 彩色效果图，${sketch}% 草图`
+      : `${colour}% colour illustration, ${sketch}% sketch`;
+  },
   addedToCart(label) {
     return isZh() ? `已加入清单：${label}。（演示：还没有结算付款。）` : `Added to cart: ${label}. (Prototype: there's no checkout yet.)`;
   },

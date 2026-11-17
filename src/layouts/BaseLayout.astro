@@ -20,6 +20,9 @@ interface Props {
   ogDescription: string;
   /** Path below the base, e.g. "assets/og-home.png" (placeholder images, as in the original). */
   ogImage: string;
+  /** Optional alt text and pixel size for og:image (used when the image really exists). */
+  ogImageAlt?: string;
+  ogImageSize?: [number, number];
   /** Text of the "Prototype: ..." notice bar at the top of the page. */
   notice: string;
   /** Footer placeholder note: "names, prices and <figures|dates>". */
@@ -28,7 +31,7 @@ interface Props {
   jsonLd: Record<string, unknown>[];
 }
 
-const { locale, route, title, description, ogTitle, ogDescription, ogImage, notice, footerNote, jsonLd } = Astro.props;
+const { locale, route, title, description, ogTitle, ogDescription, ogImage, ogImageAlt, ogImageSize, notice, footerNote, jsonLd } = Astro.props;
 const t = translator(locale);
 const pageUrl = absPageUrl(route, locale);
 const enUrl = absPageUrl(route, 'en');
@@ -51,6 +54,9 @@ const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonLd }
 <meta property="og:description" content={ogDescription}>
 <meta property="og:url" content={pageUrl}>
 <meta property="og:image" content={absUrl(ogImage)}>
+{ogImageSize && <meta property="og:image:width" content={String(ogImageSize[0])}>}
+{ogImageSize && <meta property="og:image:height" content={String(ogImageSize[1])}>}
+{ogImageAlt && <meta property="og:image:alt" content={ogImageAlt}>}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1f1d3d">
 <link rel="icon" href={url('assets/favicon.svg')} type="image/svg+xml">

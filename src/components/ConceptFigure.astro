@@ -1,0 +1,45 @@
+---
+/* A Burrow Mole concept rendering: WebP with JPEG fallback, responsive srcset,
+   real width/height, and an HTML caption that always states it is a 3D concept.
+   The images carry their own on-image caption at the bottom-left, so they are never
+   cropped: they keep their intrinsic aspect ratio (no object-fit: cover). */
+import { CONCEPT_LABEL, conceptImage, type ConceptRole } from '../data/concept';
+import { translator, type Locale } from '../i18n/translate';
+
+interface Props {
+  locale: Locale;
+  role: ConceptRole;
+  /** `sizes` attribute describing the rendered width. */
+  sizes: string;
+  /** Short visible label, e.g. "Front" or "Face close-up". */
+  label?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  /** Add a link to the largest JPEG (for detailed sheets). */
+  fullSizeLink?: boolean;
+  /** Hide the standard concept sentence (only when the surrounding caption already says it). */
+  compactCaption?: boolean;
+}
+const { locale, role, sizes, label, loading = 'lazy', fetchpriority, class: className, fullSizeLink = false, compactCaption = false } = Astro.props;
+const t = translator(locale);
+const img = conceptImage(role);
+const hasSlot = Astro.slots.has('default');
+---
+<figure class:list={['concept-figure', className]}>
+  <div class="concept-frame">
+    <picture>
+      <source type="image/webp" srcset={img.webpSrcset} sizes={sizes} />
+      <img src={img.src} srcset={img.jpgSrcset} sizes={sizes} width={img.width} height={img.height} alt={t(img.alt)} loading={loading} decoding={loading === 'eager' ? 'sync' : 'async'} fetchpriority={fetchpriority} />
+    </picture>
+    <span class="concept-flag" aria-hidden="true">{t('3D concept')}</span>
+  </div>
+  <figcaption>
+    {label && <strong class="concept-label">{label}</strong>}
+    {hasSlot ? <slot /> : !compactCaption && <span>{t(CONCEPT_LABEL)}.</span>}
+    {compactCaption && !hasSlot && <span class="sr">{t(CONCEPT_LABEL)}.</span>}
+    {fullSizeLink && (
+      <a class="concept-full" href={img.full.href}>{t('Open the full-size sheet')}<span class="sr">{t(' (JPEG image)')}</span> <span class="concept-meta">{img.full.width} × {img.full.height} px · {img.full.kb} KB</span></a>
+    )}
+  </figcaption>
+</figure>

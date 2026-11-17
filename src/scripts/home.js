@@ -1,15 +1,17 @@
-/* Home page: Momo's eyes follow the pointer, squeeze on click,
-   and the sketch-to-plush comparison slider. */
+/* Home page: Momo (an SVG illustration) follows the pointer with its eyes and squeezes
+   when its button is pressed; plus the sketch-to-colour comparison slider.
+   The Burrow Mole concept renderings are static images and are never animated. */
 import { $, reduceMotion } from './site.js';
-import { HOME_LINES } from './i18n.js';
+import { HOME_LINES, msg } from './i18n.js';
 
 const momo = $('#momo');
+const momoBtn = $('#momo-btn');
 const eyes = $('#eyes');
 const bubble = $('#bubble');
 const LINES = HOME_LINES();
 let line = 0, bubbleTimer;
 
-if (!reduceMotion) {
+if (momo && eyes && !reduceMotion) {
   let raf = 0, px = 0, py = 0;
   window.addEventListener('pointermove', e => {
     px = e.clientX; py = e.clientY;
@@ -34,12 +36,19 @@ function squeeze() {
   clearTimeout(bubbleTimer);
   bubbleTimer = setTimeout(() => bubble.classList.add('hide'), 2800);
 }
-momo.addEventListener('click', squeeze);
-momo.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); squeeze(); } });
-setTimeout(() => bubble.classList.add('hide'), 4000);
+// A real <button> wraps the SVG, so Enter/Space work natively and it is focusable.
+if (momo && momoBtn && bubble) {
+  momoBtn.addEventListener('click', squeeze);
+  setTimeout(() => bubble.classList.add('hide'), 4000);
+}
 
 const compare = $('#compare');
 const range = $('#compare-range');
-const setPos = () => compare.style.setProperty('--pos', range.value + '%');
-range.addEventListener('input', setPos);
-setPos();
+if (compare && range) {
+  const setPos = () => {
+    compare.style.setProperty('--pos', range.value + '%');
+    range.setAttribute('aria-valuetext', msg.compareValuetext(range.value));
+  };
+  range.addEventListener('input', setPos);
+  setPos();
+}
