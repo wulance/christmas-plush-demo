@@ -8,16 +8,18 @@ This is a preview only. There is no custom domain, and the site does not claim s
 
 ## Languages
 
-- English: `/`, `/corporate-plush/`, `/christmas-plush/`, `/photo-to-plush/`
+- English: `/`, `/corporate-plush/`, `/christmas-plush/`, `/photo-to-plush/`, `/studio/`
 - Simplified Chinese: the same routes under `/zh/`
 
 The header language switch and `hreflang` / canonical / sitemap URLs all use the GitHub Pages origin and the `/christmas-plush-demo/` base path.
 
-## Collections
+## Pages
 
-- Corporate custom plush (mascot builder and quote form)
-- Christmas collection (tree calendar, reindeer designer, advent calendar, shipping countdown)
-- Photo to plush (local photo preview that never leaves the browser)
+- Home: a focused hero, the three offerings, a short studio teaser, four FAQs and one closing inquiry. No builders or technical concept views.
+- Corporate custom plush (mascot builder, placeholder pricing and the quote form)
+- Seasonal collection at `/christmas-plush/` (tree calendar, reindeer designer, advent calendar, shipping countdown). The nav label is "Seasonal"; the route is unchanged.
+- Photo to plush (local photo preview that never leaves the browser; the button wording does not imply a photo is sent)
+- Studio at `/studio/` and `/zh/studio/`: Burrow Mole (original 3D concept, v0.4), the full process, the sketch-to-colour slider and what the studio does
 
 ## Demo behavior
 
@@ -26,10 +28,11 @@ Brand names, prices, lead times, shipping deadlines and certifications are place
 
 ## Visual system
 
-"Pattern studio": warm pattern-paper, deep ink, stitched-seam dashed borders, graph-paper drawing-board plates and tactile, sticker-like buttons. The system lives in `src/styles/global.css`.
+A restrained studio system in `src/styles/global.css`: paper and ink, coral only for primary buttons and links, collection tints only on their own pages, an 8px spacing scale, thin ink borders and 16px radii. No rotation, offset shadows, graph paper or watermark numbers.
 
-- Fonts are self-hosted from npm (`@fontsource-variable/*`, SIL OFL): Fraunces (display), Nunito (body) and Caveat (designer's sketch notes). No external font service is used. Simplified Chinese pages keep those Latin fonts and fall back to system CJK faces, with slightly looser heading tracking.
-- Each page sets `body[data-collection]` (`home`, `corporate`, `christmas`, `photo`), which tints accent colours. Christmas keeps its pine/berry palette as one collection; the studio itself uses ink and coral.
+- Fonts are self-hosted from npm (`@fontsource-variable/*`, SIL OFL): Fraunces for the wordmark, H1 and H2, and Nunito for everything else. `@fontsource-variable/caveat` remains in `package.json` so the lockfile stays unchanged, but it is no longer imported. No external font service is used. Simplified Chinese pages keep those Latin fonts and fall back to system CJK faces (PingFang, Noto Sans/Serif SC, Songti, Kaiti and similar), with looser heading tracking and no forced uppercase.
+- Each page sets `body[data-collection]` (`home`, `corporate`, `christmas`, `photo`, `studio`). Corporate, Christmas and photo pages tint the accent colour; home and studio keep ink and coral.
+- Overflow is prevented at the source (grids use `minmax(0, 1fr)`, the pricing table scrolls in its own region, the header has a compact narrow layout). The document itself is never clipped, so the sticky header keeps working.
 
 ## Commands
 
@@ -64,9 +67,9 @@ src/components/ConceptFigure.astro  WebP + JPEG <picture> with an honest concept
 
 ## Burrow Mole concept imagery
 
-The homepage hero and the studio section (`/#studio`, `/zh/#studio`) use the approved Burrow Mole (option A, v0.4) **3D concept renderings**. They are not photographs of a manufactured sample, customer work or catalogue images, and the site keeps saying so in both languages:
+The homepage hero and the `/studio/` (and `/zh/studio/`) page use the approved Burrow Mole (option A, v0.4) **3D concept renderings**. They are not photographs of a manufactured sample, customer work or catalogue images, and the site keeps saying so in both languages. A short homepage teaser at `/#studio` links to the studio page; the technical views live there.
 
 - Images are rendered with `<ConceptFigure>`. It emits WebP + JPEG `srcset`s from the manifest, real `width`/`height`, translated alt text and a caption stating they are 3D concept renderings.
 - The images are never cropped (`object-fit: cover` is not used), so the burned-in concept captions stay visible.
-- Only the hero loads eagerly; other concept views are lazy-loaded. On narrow screens the dense turnaround sheet is replaced by front / side / back views in a swipeable strip, with a link to the full-size sheet.
-- Momo, the squeezable mascot in the final call to action, is an SVG illustration inside a real button. The concept renderings are never animated or "squeezed".
+- Only the homepage hero loads eagerly; other concept views are lazy-loaded. On `/studio/` at 759px and below, the dense turnaround sheet is replaced by front, side and back views stacked vertically, plus a link to the full-size sheet.
+- Burrow Mole is still at the concept stage. The studio page says so above the process steps, so later steps do not imply a physical sample already exists.

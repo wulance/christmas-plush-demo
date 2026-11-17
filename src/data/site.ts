@@ -13,6 +13,7 @@ export const ROUTES = {
   corporate: 'corporate-plush/',
   christmas: 'christmas-plush/',
   photo: 'photo-to-plush/',
+  studio: 'studio/',
 } as const;
 export type RouteKey = keyof typeof ROUTES;
 
@@ -49,21 +50,22 @@ export function link(to: RouteKey, current: RouteKey, locale: Locale, hash?: str
 
 export const MAIN_NAV: { label: string; to: RouteKey; hash?: string; cta?: boolean; route?: boolean }[] = [
   { label: 'Corporate', to: 'corporate', route: true },
-  { label: 'Christmas', to: 'christmas', route: true },
+  // The /christmas-plush/ route holds the current seasonal collection.
+  { label: 'Seasonal', to: 'christmas', route: true },
   { label: 'Photo to Plush', to: 'photo', route: true },
-  { label: 'Design Studio', to: 'home', hash: 'studio' },
+  { label: 'Studio', to: 'studio', route: true },
   { label: 'Get a quote', to: 'corporate', hash: 'quote', cta: true },
 ];
 
 export const FOOTER_COLLECTIONS: { label: string; to: RouteKey }[] = [
   { label: 'Corporate custom plush', to: 'corporate' },
-  { label: 'Christmas collection', to: 'christmas' },
+  { label: 'Seasonal collection', to: 'christmas' },
   { label: 'Photo to plush', to: 'photo' },
 ];
 
-export const FOOTER_STUDIO: { label: string; to: RouteKey; hash: string }[] = [
-  { label: 'Design studio', to: 'home', hash: 'studio' },
-  { label: 'How we work', to: 'home', hash: 'process' },
+export const FOOTER_STUDIO: { label: string; to: RouteKey; hash?: string }[] = [
+  { label: 'Design studio', to: 'studio' },
+  { label: 'How we work', to: 'studio', hash: 'process' },
   { label: 'Request a quote', to: 'corporate', hash: 'quote' },
 ];
 

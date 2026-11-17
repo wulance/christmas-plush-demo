@@ -175,7 +175,8 @@ const FAQ = [
     <div class="wrap prose">
       <h2 id="pricing-h">{t("Pricing and lead times")}</h2>
       <p>{t("The price depends on size, the amount of embroidery and the packaging. These are typical prices for a 25 cm mascot (placeholders):")}</p>
-      <table class="tiers">
+      <div class="table-scroll" role="region" aria-label={t("Pricing table (placeholder prices)")} tabindex="0">
+        <table class="tiers">
         <thead><tr><th scope="col">{t("Quantity")}</th><th scope="col">{t("Typical price per piece")}</th><th scope="col">{t("Production time")}</th></tr></thead>
         <tbody>
           <tr><td>50–199</td><td>{t("from $14.90")}</td><td>{t("20–25 days")}</td></tr>
@@ -184,6 +185,7 @@ const FAQ = [
           <tr><td>2,000+</td><td>{t("Ask us for a quote")}</td><td>{t("30–40 days")}</td></tr>
         </tbody>
       </table>
+      </div>
       <p class="small">{t("The digital design proof is free. A physical sample costs $120, which we refund when you place the order. Production starts after you approve the sample.")}</p>
     </div>
   </section>

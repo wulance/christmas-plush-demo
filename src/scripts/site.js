@@ -85,7 +85,11 @@ $$('form[data-proto-form]').forEach(form => {
       return;
     }
     const who = (form.elements.company || form.elements.name || {}).value || '';
-    out.textContent = msg.formThanks(who.trim());
+    const name = who.trim() ? (document.documentElement.lang || '').toLowerCase().startsWith('zh') ? '，' + who.trim() : ', ' + who.trim() : '';
+    // A form may supply its own demo message ("{who}" becomes the localized name prefix).
+    out.textContent = form.dataset.successText
+      ? form.dataset.successText.replace('{who}', name)
+      : msg.formThanks(who.trim());
     form.reset();
     form.dispatchEvent(new Event('proto-reset'));
   });

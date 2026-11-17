@@ -88,7 +88,7 @@ const FAQ = [
         <h2 id="design-h">{t("Add your photo and choose the style")}</h2>
         <p>{t("This preview shows the style options. Your real plush is drawn by hand from your photo, so it will look like the person or pet in it.")}</p>
       </div>
-      <form id="photo-form" class="two-col builder" novalidate data-proto-form data-error-text={t("Please add a photo, your name and a valid email.")} autocomplete="off">
+      <form id="photo-form" class="two-col builder" novalidate data-proto-form data-error-text={t("Please add a photo, your name and a valid email.")} data-success-text={t("Thanks{who}! Your choices are complete. This is a demo, so your photo and details stayed in this browser and nothing was sent.")} autocomplete="off">
         <div>
           <div class="photo-flow">
             <figure class="polaroid">
@@ -171,9 +171,9 @@ const FAQ = [
           <div class="field"><label for="p-notes">{t("Anything we should know?")}</label><textarea id="p-notes" name="notes" rows="3" placeholder={t("For example: always wears a red scarf, has a dimple on the left, or it's for a dog called Biscuit")}></textarea></div>
           <div class="price-row">
             <span class="price" id="photo-price">$89</span>
-            <button class="btn btn-red squish" type="submit">{t("Send to our illustrators")}</button>
+            <button class="btn btn-red squish" type="submit">{t("Check my request")}</button>
           </div>
-          <p class="small">{t("You pay only after you approve the drawing.")}</p>
+          <p class="small">{t("Demo only: nothing is uploaded, sent or charged. On the live service you would pay only after approving the drawing.")}</p>
           <p class="form-msg" role="status"></p>
         </div>
       </form>
