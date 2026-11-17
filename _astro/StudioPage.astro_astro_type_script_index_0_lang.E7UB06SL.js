@@ -1,0 +1,1 @@
+import{c as e,t}from"./site.CyyYshCT.js";var n=t(`#compare`),r=t(`#compare-range`);if(n&&r){let t=()=>{n.style.setProperty(`--pos`,r.value+`%`),r.setAttribute(`aria-valuetext`,e.compareValuetext(r.value))};r.addEventListener(`input`,t),t()}
