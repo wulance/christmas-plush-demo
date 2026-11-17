@@ -1,0 +1,312 @@
+{
+  "note": "Web-optimized derivatives of Nib the owlet v0.2 3D concept renderings. These are concept images, not photographs of a manufactured sample. No physical sample has been made. On-image labels already say so. Do not present them as product photos, customer work or finished samples.",
+  "character": "Nib the owlet, concept version 0.2",
+  "originals_not_in_this_tree": false,
+  "originals_location": "incoming/nib-v02/ (not published; never copied into public/ or dist/)",
+  "images": [
+    {
+      "role": "hero",
+      "slug": "nib-v02-hero",
+      "source_name": "nib-v02-hero.png",
+      "source_width": 1400,
+      "source_height": 1100,
+      "alt": "Three-quarter 3D concept rendering of Nib the owlet, an original plush design (concept v0.2): a dusty-blue chubby owlet with a cream heart-shaped face, small tufts and wings held out. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-hero-800.webp",
+          "format": "webp",
+          "width": 800,
+          "height": 629,
+          "bytes": 13392
+        },
+        {
+          "file": "nib-v02-hero-800.jpg",
+          "format": "jpg",
+          "width": 800,
+          "height": 629,
+          "bytes": 25830
+        },
+        {
+          "file": "nib-v02-hero-1100.webp",
+          "format": "webp",
+          "width": 1100,
+          "height": 864,
+          "bytes": 22090
+        },
+        {
+          "file": "nib-v02-hero-1100.jpg",
+          "format": "jpg",
+          "width": 1100,
+          "height": 864,
+          "bytes": 44947
+        },
+        {
+          "file": "nib-v02-hero-1400.webp",
+          "format": "webp",
+          "width": 1400,
+          "height": 1100,
+          "bytes": 33602
+        },
+        {
+          "file": "nib-v02-hero-1400.jpg",
+          "format": "jpg",
+          "width": 1400,
+          "height": 1100,
+          "bytes": 68174
+        }
+      ]
+    },
+    {
+      "role": "turnaround",
+      "slug": "nib-v02-turnaround",
+      "source_name": "nib-v02-turnaround.png",
+      "source_width": 3128,
+      "source_height": 1910,
+      "alt": "Front, side and back 3D concept turnaround of Nib the owlet (concept v0.2), with design notes and rounded model-target measurements. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-turnaround-1200.webp",
+          "format": "webp",
+          "width": 1200,
+          "height": 733,
+          "bytes": 40428
+        },
+        {
+          "file": "nib-v02-turnaround-1200.jpg",
+          "format": "jpg",
+          "width": 1200,
+          "height": 733,
+          "bytes": 78532
+        },
+        {
+          "file": "nib-v02-turnaround-1600.webp",
+          "format": "webp",
+          "width": 1600,
+          "height": 977,
+          "bytes": 66326
+        },
+        {
+          "file": "nib-v02-turnaround-1600.jpg",
+          "format": "jpg",
+          "width": 1600,
+          "height": 977,
+          "bytes": 134247
+        },
+        {
+          "file": "nib-v02-turnaround-2200.webp",
+          "format": "webp",
+          "width": 2200,
+          "height": 1343,
+          "bytes": 115174
+        },
+        {
+          "file": "nib-v02-turnaround-2200.jpg",
+          "format": "jpg",
+          "width": 2200,
+          "height": 1343,
+          "bytes": 228357
+        },
+        {
+          "file": "nib-v02-turnaround-2800.webp",
+          "format": "webp",
+          "width": 2800,
+          "height": 1710,
+          "bytes": 178390
+        },
+        {
+          "file": "nib-v02-turnaround-2800.jpg",
+          "format": "jpg",
+          "width": 2800,
+          "height": 1710,
+          "bytes": 345120
+        }
+      ]
+    },
+    {
+      "role": "front",
+      "slug": "nib-v02-front",
+      "source_name": "nib-v02-front.png",
+      "source_width": 1000,
+      "source_height": 1000,
+      "alt": "Front 3D concept rendering of Nib the owlet (concept v0.2), showing the cream heart-shaped face, satin-stitched oval eyes and felt feet. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-front-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 700,
+          "bytes": 26762
+        },
+        {
+          "file": "nib-v02-front-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 700,
+          "bytes": 48165
+        },
+        {
+          "file": "nib-v02-front-1000.webp",
+          "format": "webp",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 48690
+        },
+        {
+          "file": "nib-v02-front-1000.jpg",
+          "format": "jpg",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 90921
+        }
+      ]
+    },
+    {
+      "role": "side",
+      "slug": "nib-v02-side",
+      "source_name": "nib-v02-side.png",
+      "source_width": 1000,
+      "source_height": 1000,
+      "alt": "Side 3D concept rendering of Nib the owlet (concept v0.2), showing the rounded silhouette, a wing and an ear tuft. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-side-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 700,
+          "bytes": 19942
+        },
+        {
+          "file": "nib-v02-side-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 700,
+          "bytes": 38308
+        },
+        {
+          "file": "nib-v02-side-1000.webp",
+          "format": "webp",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 36050
+        },
+        {
+          "file": "nib-v02-side-1000.jpg",
+          "format": "jpg",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 71217
+        }
+      ]
+    },
+    {
+      "role": "back",
+      "slug": "nib-v02-back",
+      "source_name": "nib-v02-back.png",
+      "source_width": 1000,
+      "source_height": 1000,
+      "alt": "Back 3D concept rendering of Nib the owlet (concept v0.2), showing the dusty-blue back, wings and tufts. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-back-700.webp",
+          "format": "webp",
+          "width": 700,
+          "height": 700,
+          "bytes": 23570
+        },
+        {
+          "file": "nib-v02-back-700.jpg",
+          "format": "jpg",
+          "width": 700,
+          "height": 700,
+          "bytes": 44196
+        },
+        {
+          "file": "nib-v02-back-1000.webp",
+          "format": "webp",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 44534
+        },
+        {
+          "file": "nib-v02-back-1000.jpg",
+          "format": "jpg",
+          "width": 1000,
+          "height": 1000,
+          "bytes": 83655
+        }
+      ]
+    },
+    {
+      "role": "face-feet-detail",
+      "slug": "nib-v02-face-feet-detail",
+      "source_name": "nib-v02-face-feet-detail.png",
+      "source_width": 2224,
+      "source_height": 990,
+      "alt": "Two 3D concept close-ups of Nib the owlet (concept v0.2): satin-stitched oval eyes with stitched highlights, and one-piece mustard felt feet with three toes and stitches between the toes. Not a photograph of a manufactured sample.",
+      "caption": "3D concept rendering \u2014 not a photograph of a manufactured sample",
+      "variants": [
+        {
+          "file": "nib-v02-face-feet-detail-800.webp",
+          "format": "webp",
+          "width": 800,
+          "height": 356,
+          "bytes": 25016
+        },
+        {
+          "file": "nib-v02-face-feet-detail-800.jpg",
+          "format": "jpg",
+          "width": 800,
+          "height": 356,
+          "bytes": 39503
+        },
+        {
+          "file": "nib-v02-face-feet-detail-1200.webp",
+          "format": "webp",
+          "width": 1200,
+          "height": 534,
+          "bytes": 55376
+        },
+        {
+          "file": "nib-v02-face-feet-detail-1200.jpg",
+          "format": "jpg",
+          "width": 1200,
+          "height": 534,
+          "bytes": 86786
+        },
+        {
+          "file": "nib-v02-face-feet-detail-1600.webp",
+          "format": "webp",
+          "width": 1600,
+          "height": 712,
+          "bytes": 95072
+        },
+        {
+          "file": "nib-v02-face-feet-detail-1600.jpg",
+          "format": "jpg",
+          "width": 1600,
+          "height": 712,
+          "bytes": 151355
+        },
+        {
+          "file": "nib-v02-face-feet-detail-2200.webp",
+          "format": "webp",
+          "width": 2200,
+          "height": 979,
+          "bytes": 167076
+        },
+        {
+          "file": "nib-v02-face-feet-detail-2200.jpg",
+          "format": "jpg",
+          "width": 2200,
+          "height": 979,
+          "bytes": 271355
+        }
+      ]
+    }
+  ]
+}
